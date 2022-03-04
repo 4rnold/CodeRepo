@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/is-admin/is-admin.iml" filepath="$PROJECT_DIR$/is-admin/is-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/is-order-api/is-order-api.iml" filepath="$PROJECT_DIR$/is-order-api/is-order-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/is-price-api/is-price-api.iml" filepath="$PROJECT_DIR$/is-price-api/is-price-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/is-server-auth/is-server-auth.iml" filepath="$PROJECT_DIR$/is-server-auth/is-server-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/is-server-gateway/is-server-gateway.iml" filepath="$PROJECT_DIR$/is-server-gateway/is-server-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/is-user-api/is-user-api.iml" filepath="$PROJECT_DIR$/is-user-api/is-user-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ms-security.iml" filepath="$PROJECT_DIR$/.idea/ms-security.iml" />
+    </modules>
+  </component>
+</project>

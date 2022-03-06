@@ -1,5 +1,2 @@
 GET http://192.168.137.1:8000/ecommerce-nacos-client/nacos-client/service-instance
 
-
-
-

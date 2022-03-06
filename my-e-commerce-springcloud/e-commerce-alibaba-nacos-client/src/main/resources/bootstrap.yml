@@ -25,18 +25,28 @@ spring:
         group: DEFAULT_GROUP  # 组, 默认为 DEFAULT_GROUP
         namespace: b5f354d7-3447-4adc-b347-896b263e737f
         server-addr: 192.168.137.6:8848
+  kafka:
+    bootstrap-servers: 192.168.137.6:9092
+    producer:
+      retries: 3
+    consumer:
+      auto-offset-reset: latest
+  zipkin:
+    sender:
+      type: kafka # 默认是 web
+    base-url: http://192.168.137.6:9411/
 #  kafka:
 #    bootstrap-servers: 127.0.0.1:9092
 #    producer:
 #      retries: 3
 #    consumer:
 #      auto-offset-reset: latest
-#  sleuth:
-#    sampler:
-#      # ProbabilityBasedSampler 抽样策略
-#      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
-#      # RateLimitingSampler 抽样策略, 设置了限速采集, spring.sleuth.sampler.probability 属性值无效
-#      rate: 100  # 每秒间隔接受的 trace 量
+  sleuth:
+    sampler:
+      # ProbabilityBasedSampler 抽样策略
+      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
+      # RateLimitingSampler 抽样策略, 设置了限速采集, spring.sleuth.sampler.probability 属性值无效
+      rate: 100  # 每秒间隔接受的 trace 量
 #  zipkin:
 #    sender:
 #      type: kafka # 默认是 web

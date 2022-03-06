@@ -9,8 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="e-commerce-gateway" />
         <module name="e-commerce-mvc-config" />
+        <module name="e-commerce-account-service" />
         <module name="e-commerce-alibaba-nacos-client" />
+        <module name="e-commerce-service-sdk" />
         <module name="e-commerce-admin" />
+        <module name="e-commerce-goods-service" />
+        <module name="e-commerce-service-config" />
         <module name="e-commerce-common" />
         <module name="e-commerce-authority-center" />
       </profile>
@@ -18,12 +22,17 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="e-commerce-account-service" options="-parameters" />
       <module name="e-commerce-admin" options="-parameters" />
       <module name="e-commerce-alibaba-nacos-client" options="-parameters" />
       <module name="e-commerce-authority-center" options="-parameters" />
       <module name="e-commerce-common" options="-parameters" />
       <module name="e-commerce-gateway" options="-parameters" />
+      <module name="e-commerce-goods-service" options="-parameters" />
       <module name="e-commerce-mvc-config" options="-parameters" />
+      <module name="e-commerce-service" options="-parameters" />
+      <module name="e-commerce-service-config" options="-parameters" />
+      <module name="e-commerce-service-sdk" options="-parameters" />
     </option>
   </component>
 </project>

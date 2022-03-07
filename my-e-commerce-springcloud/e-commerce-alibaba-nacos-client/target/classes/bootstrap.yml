@@ -41,12 +41,12 @@ spring:
 #      retries: 3
 #    consumer:
 #      auto-offset-reset: latest
-#  sleuth:
-#    sampler:
-#      # ProbabilityBasedSampler 抽样策略
-#      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
-#      # RateLimitingSampler 抽样策略, 设置了限速采集, spring.sleuth.sampler.probability 属性值无效
-#      rate: 100  # 每秒间隔接受的 trace 量
+  sleuth:
+    sampler:
+      # ProbabilityBasedSampler 抽样策略
+      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
+      # RateLimitingSampler 抽样策略, 设置了限速采集, spring.sleuth.sampler.probability 属性值无效
+      rate: 100  # 每秒间隔接受的 trace 量
 #  zipkin:
 #    sender:
 #      type: kafka # 默认是 web

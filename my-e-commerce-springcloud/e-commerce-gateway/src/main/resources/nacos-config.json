@@ -88,5 +88,26 @@
         }
       }
     ]
+  },
+  {
+    "id": "e-commerce-goods-service",
+    "order": 0,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/ecommerce-goods-service/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-goods-service",
+    "filters": [
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
   }
 ]

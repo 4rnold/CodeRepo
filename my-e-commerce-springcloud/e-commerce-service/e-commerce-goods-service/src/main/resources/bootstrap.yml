@@ -17,7 +17,7 @@ spring:
           management:
             context-path: ${server.servlet.context-path}/actuator
   kafka:
-    bootstrap-servers: 127.0.0.1:9092
+    bootstrap-servers: 192.168.137.6:9092
     producer:
       retries: 3
     consumer:

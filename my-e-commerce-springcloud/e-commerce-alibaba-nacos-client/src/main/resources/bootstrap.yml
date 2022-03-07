@@ -53,20 +53,20 @@ spring:
 #    base-url: http://localhost:9411/
 
 # Feign 的相关配置
-#feign:
-#  # feign 开启 gzip 压缩
-#  compression:
-#    request:
-#      enabled: true
-#      mime-types: text/xml,application/xml,application/json
-#      min-request-size: 1024
-#    response:
-#      enabled: true
-#  # 禁用默认的 http, 启用 okhttp
-#  httpclient:
-#    enabled: false
-#  okhttp:
-#    enabled: true
+feign:
+  # feign 开启 gzip 压缩
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 1024
+    response:
+      enabled: true
+  # 禁用默认的 http, 启用 okhttp
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 #  # OpenFeign 集成 Hystrix
 #  hystrix:
 #    enabled: true

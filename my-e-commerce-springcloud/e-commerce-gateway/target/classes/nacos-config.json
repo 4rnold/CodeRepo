@@ -1,0 +1,113 @@
+[
+  {
+    "id": "e-commerce-nacos-client-1",
+    "order": 0,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/ecommerce-nacos-client/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-nacos-client",
+    "filters": [
+      {
+        "name": "HeaderToken"
+      },
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "test",
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/e-commerce/login"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-nacos-client",
+    "filters": [
+      {
+        "name": "HeaderToken"
+      },
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "test2",
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/e-commerce/register"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-nacos-client",
+    "filters": [
+      {
+        "name": "HeaderToken"
+      },
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e-commerce-account-service",
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/ecommerce-account-service/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-account-service",
+    "filters": [
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e-commerce-goods-service",
+    "order": 0,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/imooc/ecommerce-goods-service/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://e-commerce-goods-service",
+    "filters": [
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  }
+]

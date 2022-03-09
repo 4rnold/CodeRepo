@@ -1,0 +1,15 @@
+### message-with-value
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/rocket-mq/message-with-value
+Content-Type: application/json
+
+### message-with-key
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/rocket-mq/message-with-key
+Content-Type: application/json
+
+### message-with-tag
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/rocket-mq/message-with-tag
+Content-Type: application/json
+
+### message-with-all
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/rocket-mq/message-with-all
+Content-Type: application/json

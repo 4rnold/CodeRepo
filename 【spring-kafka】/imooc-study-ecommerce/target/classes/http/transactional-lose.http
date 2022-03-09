@@ -1,0 +1,7 @@
+### wrong-rollback-for
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/transactional-lose/wrong-rollback-for
+Content-Type: application/json
+
+### wrong-inner-call
+GET http://127.0.0.1:8001/imooc-study-ecommerce-dev/transactional-lose/wrong-inner-call
+Content-Type: application/json

@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    # prod, dev
+    active: dev
+  application:
+    name: imooc-study-ecommerce
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

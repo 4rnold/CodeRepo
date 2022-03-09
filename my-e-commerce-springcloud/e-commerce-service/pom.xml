@@ -17,6 +17,7 @@
         <module>e-commerce-service-sdk</module>
         <module>e-commerce-goods-service</module>
         <module>test2</module>
+        <module>e-commerce-order-service</module>
     </modules>
 
     <!-- 模块名及描述信息 -->

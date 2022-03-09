@@ -16,6 +16,7 @@
         <module name="e-commerce-admin" />
         <module name="e-commerce-goods-service" />
         <module name="e-commerce-service-config" />
+        <module name="e-commerce-stream-client" />
         <module name="e-commerce-common" />
         <module name="e-commerce-authority-center" />
         <module name="e-commerce-hystrix-dashboard" />
@@ -39,6 +40,7 @@
       <module name="e-commerce-service" options="-parameters" />
       <module name="e-commerce-service-config" options="-parameters" />
       <module name="e-commerce-service-sdk" options="-parameters" />
+      <module name="e-commerce-stream-client" options="-parameters" />
       <module name="test1" options="-parameters" />
       <module name="test2" options="-parameters" />
     </option>

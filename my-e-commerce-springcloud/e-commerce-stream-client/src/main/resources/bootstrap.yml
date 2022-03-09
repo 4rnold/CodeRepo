@@ -59,6 +59,7 @@ spring:
           destination: ecommerce-stream-client-qinyi
           group: e-commerce-qinyi-qinyi
 
+
   # spring-kafka 的配置
   kafka:
     bootstrap-servers: 192.168.137.6:9092

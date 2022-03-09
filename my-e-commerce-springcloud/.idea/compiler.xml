@@ -18,6 +18,7 @@
         <module name="e-commerce-service-config" />
         <module name="e-commerce-common" />
         <module name="e-commerce-authority-center" />
+        <module name="e-commerce-hystrix-dashboard" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -33,6 +34,7 @@
       <module name="e-commerce-common" options="-parameters" />
       <module name="e-commerce-gateway" options="-parameters" />
       <module name="e-commerce-goods-service" options="-parameters" />
+      <module name="e-commerce-hystrix-dashboard" options="-parameters" />
       <module name="e-commerce-mvc-config" options="-parameters" />
       <module name="e-commerce-service" options="-parameters" />
       <module name="e-commerce-service-config" options="-parameters" />

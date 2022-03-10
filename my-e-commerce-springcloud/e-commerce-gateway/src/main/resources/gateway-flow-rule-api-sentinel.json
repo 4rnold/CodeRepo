@@ -1,0 +1,14 @@
+[
+  {
+    "apiName": "nacos-client-api",
+    "predicateItems": [
+      {
+        "pattern": "/imooc/ecommerce-nacos-client/nacos-client/project-config"
+      },
+      {
+        "pattern": "/imooc/ecommerce-nacos-client/**",
+        "matchStrategy": 1
+      }
+    ]
+  }
+]

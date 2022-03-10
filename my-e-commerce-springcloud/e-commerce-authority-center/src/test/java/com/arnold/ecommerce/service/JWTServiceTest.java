@@ -1,7 +1,6 @@
 package com.arnold.ecommerce.service;
 
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.util.TokenParseUtil;
 import com.arnold.ecommerce.vo.LoginUserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +25,7 @@ public class JWTServiceTest {
     public void testGenerateAndParseToken() throws Exception {
 
         String jwtToken = ijwtService.generateToken(
-                "ImoocQinyi@imooc.com",
+                "Qinyi@imooc.com",
                 "25d55ad283aa400af464c76d713c07ad"
         );
         log.info("jwt token is: [{}]", jwtToken);

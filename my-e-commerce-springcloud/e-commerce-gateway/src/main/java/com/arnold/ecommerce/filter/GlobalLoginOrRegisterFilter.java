@@ -1,7 +1,6 @@
 package com.arnold.ecommerce.filter;
 
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.constant.CommonConstant;
 import com.arnold.ecommerce.constant.GatewayConstant;
 import com.arnold.ecommerce.util.TokenParseUtil;

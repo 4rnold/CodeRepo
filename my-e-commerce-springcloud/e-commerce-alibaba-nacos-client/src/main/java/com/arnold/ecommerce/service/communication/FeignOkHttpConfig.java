@@ -23,7 +23,7 @@ public class FeignOkHttpConfig {
      * <h2>注入 OkHttp, 并自定义配置</h2>
      * */
     @Bean
-    public OkHttpClient okHttpClient() {
+    public okhttp3.OkHttpClient okHttpClient() {
 
         return new OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.SECONDS)    // 设置连接超时

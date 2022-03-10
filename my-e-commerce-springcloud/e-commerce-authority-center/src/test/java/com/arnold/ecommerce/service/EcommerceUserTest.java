@@ -2,7 +2,6 @@ package com.arnold.ecommerce.service;
 
 import cn.hutool.crypto.digest.MD5;
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.dao.EcommerceUserDao;
 import com.arnold.ecommerce.entity.EcommerceUser;
 import lombok.extern.slf4j.Slf4j;

@@ -3,7 +3,6 @@ package com.arnold.ecommerce.filter;
 import com.arnold.ecommerce.constant.CommonConstant;
 import com.arnold.ecommerce.util.TokenParseUtil;
 import com.arnold.ecommerce.vo.LoginUserInfo;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;

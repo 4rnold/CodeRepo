@@ -1,9 +1,8 @@
 package com.arnold.ecommerce.util;
 
 import com.alibaba.fastjson.JSON;
-
-import com.arnold.ecommerce.constant.CommonConstant;
 import com.arnold.ecommerce.vo.LoginUserInfo;
+import com.arnold.ecommerce.constant.CommonConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

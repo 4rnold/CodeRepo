@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.service;
 
-
 import com.arnold.ecommerce.common.TableId;
 import com.arnold.ecommerce.order.OrderInfo;
 import com.arnold.ecommerce.vo.PageSimpleOrderDetail;

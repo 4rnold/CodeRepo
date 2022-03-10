@@ -34,8 +34,6 @@ public class DynamicRouteServiceImplByNacos {
 
     /**
      * <h2>Bean 在容器中构造完成之后会执行 init 方法</h2>
-     * nacos客户端获取远端配置，然后添加到gateway配置中。
-     * 设置监听器
      * */
     @PostConstruct
     public void init() {

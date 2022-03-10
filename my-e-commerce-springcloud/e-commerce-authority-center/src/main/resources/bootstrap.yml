@@ -10,9 +10,9 @@ spring:
     nacos:
       discovery:
         enabled: true # 如果不想使用 Nacos 进行服务注册和发现, 设置为 false 即可
-        server-addr: 192.168.137.6:8848 # Nacos 服务器地址
+        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
         # server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850 # Nacos 服务器地址
-        namespace: b5f354d7-3447-4adc-b347-896b263e737f
+        namespace: 1bc13fd5-843b-4ac0-aa55-695c25bc0ac6
         metadata:
           management:
             context-path: ${server.servlet.context-path}/actuator
@@ -26,7 +26,7 @@ spring:
     open-in-view: false
   datasource:
     # 数据源
-    url: jdbc:mysql://192.168.137.6:3306/imooc_e_commerce?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/imooc_e_commerce?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root
     type: com.zaxxer.hikari.HikariDataSource
@@ -40,16 +40,16 @@ spring:
       max-lifetime: 45000
       auto-commit: true
       pool-name: ImoocEcommerceHikariCP
-#  kafka:
-#    bootstrap-servers: 127.0.0.1:9092
-#    producer:
-#      retries: 3
-#    consumer:
-#      auto-offset-reset: latest
-#  zipkin:
-#    sender:
-#      type: kafka # 默认是 web
-#    base-url: http://127.0.0.1:9411/
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+    consumer:
+      auto-offset-reset: latest
+  zipkin:
+    sender:
+      type: kafka # 默认是 web
+    base-url: http://127.0.0.1:9411/
 
 # 暴露端点
 management:

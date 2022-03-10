@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.controller;
 
-
 import com.arnold.ecommerce.config.ProjectConfig;
 import com.arnold.ecommerce.service.NacosClientService;
 import lombok.extern.slf4j.Slf4j;

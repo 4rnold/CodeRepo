@@ -2,6 +2,9 @@ package com.arnold.ecommerce.service;
 
 import com.arnold.ecommerce.vo.UsernameAndPassword;
 
+/**
+ * <h1>JWT 相关服务接口定义</h1>
+ * */
 public interface IJWTService {
 
     /**
@@ -19,6 +22,4 @@ public interface IJWTService {
      * */
     String registerUserAndGenerateToken(UsernameAndPassword usernameAndPassword)
             throws Exception;
-
-
 }

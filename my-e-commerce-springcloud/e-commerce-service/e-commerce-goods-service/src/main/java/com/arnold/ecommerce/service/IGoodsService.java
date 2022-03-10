@@ -1,7 +1,5 @@
 package com.arnold.ecommerce.service;
 
-
-
 import com.arnold.ecommerce.common.TableId;
 import com.arnold.ecommerce.goods.DeductGoodsInventory;
 import com.arnold.ecommerce.goods.GoodsInfo;

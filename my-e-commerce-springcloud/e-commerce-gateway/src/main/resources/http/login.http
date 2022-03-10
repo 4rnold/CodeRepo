@@ -1,17 +1,17 @@
 ### 登录
-POST 192.168.137.1:9001/imooc/e-commerce/login
+POST 127.0.0.1:9001/imooc/e-commerce/login
 Content-Type: application/json
 
 {
-  "username": "ImoocQinyi@imooc.com",
+  "username": "Qinyi@imooc.com",
   "password": "25d55ad283aa400af464c76d713c07ad"
 }
 
 ###
-POST 192.168.137.1:9001/imooc/e-commerce/register
+POST 127.0.0.1:9001/imooc/e-commerce/register
 Content-Type: application/json
 
 {
-  "username": "8ImoocQinyi@imooc.com",
+  "username": "ImoocQinyi@imooc.com",
   "password": "25d55ad283aa400af464c76d713c07ad"
 }

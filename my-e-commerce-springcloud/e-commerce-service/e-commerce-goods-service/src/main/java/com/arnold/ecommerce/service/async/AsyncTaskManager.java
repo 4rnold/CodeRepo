@@ -1,18 +1,20 @@
 package com.arnold.ecommerce.service.async;
 
-
 import com.arnold.ecommerce.constant.AsyncTaskStatusEnum;
 import com.arnold.ecommerce.goods.GoodsInfo;
 import com.arnold.ecommerce.vo.AsyncTaskInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * <h1>异步任务执行管理器</h1>
  * 对异步任务进行包装管理, 记录并塞入异步任务执行信息
- * 【代理模式】
  * */
 @Slf4j
 @Component
@@ -22,7 +24,6 @@ public class AsyncTaskManager {
     private final Map<String, AsyncTaskInfo> taskContainer =
             new HashMap<>(16);
 
-    //【代理】
     private final IAsyncService asyncService;
 
     public AsyncTaskManager(IAsyncService asyncService) {

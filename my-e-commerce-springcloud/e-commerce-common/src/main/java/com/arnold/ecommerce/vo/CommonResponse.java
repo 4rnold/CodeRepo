@@ -6,8 +6,16 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * <h1>通用响应对象定义</h1>
+ * {
+ *     "code": 0,
+ *     "message": "",
+ *     "data": {}
+ * }
+ * */
 @Data
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class CommonResponse<T> implements Serializable {
 

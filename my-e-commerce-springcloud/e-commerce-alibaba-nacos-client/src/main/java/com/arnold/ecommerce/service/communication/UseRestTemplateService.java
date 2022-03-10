@@ -1,7 +1,6 @@
 package com.arnold.ecommerce.service.communication;
 
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.constant.CommonConstant;
 import com.arnold.ecommerce.vo.JwtToken;
 import com.arnold.ecommerce.vo.UsernameAndPassword;

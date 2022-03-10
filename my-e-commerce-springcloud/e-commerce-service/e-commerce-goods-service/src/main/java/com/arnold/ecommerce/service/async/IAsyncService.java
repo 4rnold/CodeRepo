@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.service.async;
 
-
 import com.arnold.ecommerce.goods.GoodsInfo;
 
 import java.util.List;

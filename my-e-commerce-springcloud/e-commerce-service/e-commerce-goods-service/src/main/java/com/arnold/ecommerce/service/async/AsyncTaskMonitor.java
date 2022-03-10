@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.service.async;
 
-
 import com.arnold.ecommerce.constant.AsyncTaskStatusEnum;
 import com.arnold.ecommerce.vo.AsyncTaskInfo;
 import lombok.extern.slf4j.Slf4j;

@@ -1,16 +1,14 @@
 package com.arnold.ecommerce.entity;
-import com.arnold.ecommerce.goods.GoodsInfo.GoodsProperty;
 
 import com.alibaba.fastjson.JSON;
-
-import com.arnold.ecommerce.constant.BrandCategory;
-import com.arnold.ecommerce.constant.GoodsCategory;
 import com.arnold.ecommerce.constant.GoodsStatus;
 import com.arnold.ecommerce.converter.BrandCategoryConverter;
 import com.arnold.ecommerce.converter.GoodsCategoryConverter;
 import com.arnold.ecommerce.converter.GoodsStatusConverter;
 import com.arnold.ecommerce.goods.GoodsInfo;
 import com.arnold.ecommerce.goods.SimpleGoodsInfo;
+import com.arnold.ecommerce.constant.BrandCategory;
+import com.arnold.ecommerce.constant.GoodsCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +16,14 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -116,7 +121,6 @@ public class EcommerceGoods {
 
     /**
      * <h2>将实体对象转成 GoodsInfo 对象</h2>
-     * 不建议这么写，可以用插件写一个converter。
      * */
     public GoodsInfo toGoodsInfo() {
 

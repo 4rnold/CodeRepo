@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.service.communication.hystrix;
 
-
 import com.arnold.ecommerce.service.communication.AuthorityFeignClient;
 import com.arnold.ecommerce.vo.JwtToken;
 import com.arnold.ecommerce.vo.UsernameAndPassword;

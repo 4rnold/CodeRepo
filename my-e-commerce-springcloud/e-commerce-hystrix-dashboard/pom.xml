@@ -7,9 +7,16 @@
         <groupId>com.imooc.ecommerce</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>e-commerce-hystrix-dashboard</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- 模块名及描述信息 -->
+    <name>e-commerce-hystrix-dashboard</name>
+    <description>Hystrix Dashboard</description>
 
     <dependencies>
         <!-- spring cloud alibaba nacos discovery 依赖 -->
@@ -52,4 +59,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.converter;
 
-
 import com.arnold.ecommerce.constant.GoodsCategory;
 
 import javax.persistence.AttributeConverter;

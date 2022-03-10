@@ -9,13 +9,13 @@ spring:
   security:
     user:
       name: imooc-qinyi
-      password: 88888888 #springboot admin的密码
+      password: 88888888
   cloud:
     nacos:
       discovery:
         enabled: true
-        server-addr: 192.168.137.6:8848
-        namespace: b5f354d7-3447-4adc-b347-896b263e737f
+        server-addr: 127.0.0.1:8848
+        namespace: 1bc13fd5-843b-4ac0-aa55-695c25bc0ac6
         metadata:
           management:
             context-path: ${server.servlet.context-path}/actuator
@@ -39,8 +39,8 @@ spring:
 #      notify:
 #        mail:
 #          from: ${spring.mail.username}
-#          to: arnold1989@sina.com
-#          cc: arnold1989@sina.com
+#          to: qinyi@imooc.com
+#          cc: qinyi@imooc.com
 
 # 暴露端点
 management:

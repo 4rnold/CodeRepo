@@ -1,14 +1,13 @@
 package com.arnold.ecommerce.service.impl;
 
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.common.TableId;
 import com.arnold.ecommerce.constant.GoodsConstant;
-import com.arnold.ecommerce.dao.EcommerceGoodsDao;
-import com.arnold.ecommerce.entity.EcommerceGoods;
 import com.arnold.ecommerce.goods.DeductGoodsInventory;
 import com.arnold.ecommerce.goods.GoodsInfo;
 import com.arnold.ecommerce.goods.SimpleGoodsInfo;
+import com.arnold.ecommerce.dao.EcommerceGoodsDao;
+import com.arnold.ecommerce.entity.EcommerceGoods;
 import com.arnold.ecommerce.service.IGoodsService;
 import com.arnold.ecommerce.vo.PageSimpleGoodsInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +21,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -203,7 +207,6 @@ public class GoodsServiceImpl implements IGoodsService {
                 );
 
         // 检查是不是可以扣减库存, 再去扣减库存
-        //【这里明显有问题】
         ecommerceGoods.forEach(g -> {
             Long currentInventory = g.getInventory();
             Integer needDeductInventory = goodsId2Inventory.get(g.getId()).getCount();

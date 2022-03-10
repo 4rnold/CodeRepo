@@ -7,17 +7,20 @@
         <groupId>com.imooc.ecommerce</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>e-commerce-service</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>e-commerce-service-config</module>
         <module>e-commerce-account-service</module>
         <module>e-commerce-service-sdk</module>
         <module>e-commerce-goods-service</module>
-        <module>test2</module>
         <module>e-commerce-order-service</module>
+        <module>e-commerce-logistics-service</module>
     </modules>
 
     <!-- 模块名及描述信息 -->
@@ -43,4 +46,5 @@
             <version>1.9.3</version>
         </dependency>
     </dependencies>
+
 </project>

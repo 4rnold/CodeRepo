@@ -1,5 +1,8 @@
 package com.arnold.ecommerce.constant;
 
+/**
+ * <h1>通用模块常量定义</h1>
+ * */
 public final class CommonConstant {
 
     /** RSA 公钥 */

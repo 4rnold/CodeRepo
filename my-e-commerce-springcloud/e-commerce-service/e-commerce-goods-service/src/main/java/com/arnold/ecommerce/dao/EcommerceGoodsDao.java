@@ -1,6 +1,5 @@
 package com.arnold.ecommerce.dao;
 
-
 import com.arnold.ecommerce.constant.BrandCategory;
 import com.arnold.ecommerce.constant.GoodsCategory;
 import com.arnold.ecommerce.entity.EcommerceGoods;

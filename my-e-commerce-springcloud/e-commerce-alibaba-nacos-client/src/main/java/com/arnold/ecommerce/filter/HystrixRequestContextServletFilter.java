@@ -41,7 +41,7 @@ public class HystrixRequestContextServletFilter implements Filter {
         HystrixRequestContext context = HystrixRequestContext.initializeContext();
 
         try {
-            // 配置【因为引入了sleuth，所以要配置并发策略】
+            // 配置
             hystrixConcurrencyStrategyConfig();
             // 请求正常通过
             chain.doFilter(request, response);

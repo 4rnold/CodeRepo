@@ -11,8 +11,8 @@ spring:
       # 服务注册发现
       discovery:
         enabled: true # 如果不想使用 Nacos 进行服务注册和发现, 设置为 false 即可
-        server-addr: 192.168.137.6:8848
-        namespace: b5f354d7-3447-4adc-b347-896b263e737f
+        server-addr: 127.0.0.1:8848
+        namespace: 1bc13fd5-843b-4ac0-aa55-695c25bc0ac6
         metadata:
           management:
             context-path: ${server.servlet.context-path}/actuator
@@ -21,7 +21,7 @@ spring:
       # SpringCloud Stream + Kafka
       kafka:
         binder:
-          brokers: 192.168.137.6:9092
+          brokers: 127.0.0.1:9092
           auto-create-topics: true  # 如果设置为false, 就不会自动创建Topic, 你在使用之前需要手动创建好
       # SpringCloud Stream + RocketMQ
       #      rocketmq:
@@ -49,7 +49,7 @@ spring:
           # 消费者开启分区支持
           consumer:
             partitioned: true
-    #自定义
+
         # Qinyi 发送方
         qinyiOutput:
           destination: ecommerce-stream-client-qinyi
@@ -59,10 +59,9 @@ spring:
           destination: ecommerce-stream-client-qinyi
           group: e-commerce-qinyi-qinyi
 
-
   # spring-kafka 的配置
   kafka:
-    bootstrap-servers: 192.168.137.6:9092
+    bootstrap-servers: 127.0.0.1:9092
     producer:
       retries: 3
     consumer:
@@ -76,7 +75,7 @@ spring:
   zipkin:
     sender:
       type: kafka # 默认是 http
-    base-url: http://192.168.137.6:9411/
+    base-url: http://localhost:9411/
 
 # 暴露端点
 management:

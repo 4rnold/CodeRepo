@@ -1,7 +1,6 @@
 package com.arnold.ecommerce.service.async;
 
 import com.alibaba.fastjson.JSON;
-
 import com.arnold.ecommerce.constant.GoodsConstant;
 import com.arnold.ecommerce.dao.EcommerceGoodsDao;
 import com.arnold.ecommerce.entity.EcommerceGoods;
@@ -16,7 +15,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 

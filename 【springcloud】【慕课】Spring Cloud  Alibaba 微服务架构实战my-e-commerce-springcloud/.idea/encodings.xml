@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/e-commerce-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-admin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-alibaba-nacos-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-alibaba-nacos-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-authority-center/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-authority-center/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-hystrix-dashboard/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-hystrix-dashboard/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-mvc-config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-mvc-config/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-sentinel-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-sentinel-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-account-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-account-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-goods-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-goods-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-logistics-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-logistics-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-order-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-service-config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-service-config/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-service-sdk/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/e-commerce-service-sdk/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-stream-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/e-commerce-stream-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

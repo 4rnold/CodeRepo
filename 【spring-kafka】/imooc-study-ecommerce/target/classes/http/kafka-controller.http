@@ -1,7 +1,0 @@
-### kafka-send-message
-GET http://127.0.0.1:8011/imooc-study-ecommerce-dev/kafka/send-message?key=qinyi&topic=qinyi-springboot
-Content-Type: application/json
-
-### kafka-send-message
-GET http://127.0.0.1:8011/imooc-study-ecommerce-dev/kafka/send-message?topic=qinyi-springboot
-Content-Type: application/json

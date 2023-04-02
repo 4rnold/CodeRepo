@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/demo_02_rabbitmq/demo_02_rabbitmq.iml" filepath="$PROJECT_DIR$/demo_02_rabbitmq/demo_02_rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_03_workqueue/demo_03_workqueue.iml" filepath="$PROJECT_DIR$/demo_03_workqueue/demo_03_workqueue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_04_fanout/demo_04_fanout.iml" filepath="$PROJECT_DIR$/demo_04_fanout/demo_04_fanout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_05_default_ex/demo_05_default_ex.iml" filepath="$PROJECT_DIR$/demo_05_default_ex/demo_05_default_ex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_06_routingmode/demo_06_routingmode.iml" filepath="$PROJECT_DIR$/demo_06_routingmode/demo_06_routingmode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_07_topicmode/demo_07_topicmode.iml" filepath="$PROJECT_DIR$/demo_07_topicmode/demo_07_topicmode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_08_spring_rabbit_xml/demo_08_spring_rabbit_xml.iml" filepath="$PROJECT_DIR$/demo_08_spring_rabbit_xml/demo_08_spring_rabbit_xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_09_spring_rabbit_xml_consumer/demo_09_spring_rabbit_xml_consumer.iml" filepath="$PROJECT_DIR$/demo_09_spring_rabbit_xml_consumer/demo_09_spring_rabbit_xml_consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_10_spring_rabbit_xml_listener/demo_10_spring_rabbit_xml_listener.iml" filepath="$PROJECT_DIR$/demo_10_spring_rabbit_xml_listener/demo_10_spring_rabbit_xml_listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_11_spring_rabbit_anno_producer/demo_11_spring_rabbit_anno_producer.iml" filepath="$PROJECT_DIR$/demo_11_spring_rabbit_anno_producer/demo_11_spring_rabbit_anno_producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_12_spring_rabbit_anno_consumer/demo_12_spring_rabbit_anno_consumer.iml" filepath="$PROJECT_DIR$/demo_12_spring_rabbit_anno_consumer/demo_12_spring_rabbit_anno_consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_13_spring_rabbit_anno_listener/demo_13_spring_rabbit_anno_listener.iml" filepath="$PROJECT_DIR$/demo_13_spring_rabbit_anno_listener/demo_13_spring_rabbit_anno_listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_14_springboot_rabbitmq/demo_14_springboot_rabbitmq.iml" filepath="$PROJECT_DIR$/demo_14_springboot_rabbitmq/demo_14_springboot_rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_14_springboot_rabbitmq (2)/demo_14_springboot_rabbitmq (1).iml" filepath="$PROJECT_DIR$/demo_14_springboot_rabbitmq (2)/demo_14_springboot_rabbitmq (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_15_springboot_consumer/demo_15_springboot_consumer.iml" filepath="$PROJECT_DIR$/demo_15_springboot_consumer/demo_15_springboot_consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_16_springboot_haproxy/demo_16_springboot_haproxy.iml" filepath="$PROJECT_DIR$/demo_16_springboot_haproxy/demo_16_springboot_haproxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_17_ttl/demo_17_ttl.iml" filepath="$PROJECT_DIR$/demo_17_ttl/demo_17_ttl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_17_ttl_springboot/demo_17_ttl_springboot.iml" filepath="$PROJECT_DIR$/demo_17_ttl_springboot/demo_17_ttl_springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_18_dlx/demo_18_dlx.iml" filepath="$PROJECT_DIR$/demo_18_dlx/demo_18_dlx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_18_dlx_springboot/demo_18_dlx_springboot.iml" filepath="$PROJECT_DIR$/demo_18_dlx_springboot/demo_18_dlx_springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_19_delayed_exchange/demo_19_delayed_exchange.iml" filepath="$PROJECT_DIR$/demo_19_delayed_exchange/demo_19_delayed_exchange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_20_publisherconfirms_01/demo_20_publisherconfirms_01.iml" filepath="$PROJECT_DIR$/demo_20_publisherconfirms_01/demo_20_publisherconfirms_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_21_persistent/demo_21_persistent.iml" filepath="$PROJECT_DIR$/demo_21_persistent/demo_21_persistent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_22_consumerAck/demo_22_consumerAck.iml" filepath="$PROJECT_DIR$/demo_22_consumerAck/demo_22_consumerAck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_22_springboot_consumerAck/demo_22_springboot_consumerAck.iml" filepath="$PROJECT_DIR$/demo_22_springboot_consumerAck/demo_22_springboot_consumerAck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_23_consumerQos/demo_23_consumerQos.iml" filepath="$PROJECT_DIR$/demo_23_consumerQos/demo_23_consumerQos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_24_tracing/demo_24_tracing.iml" filepath="$PROJECT_DIR$/demo_24_tracing/demo_24_tracing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rabbitmqLearning-main.iml" filepath="$PROJECT_DIR$/.idea/rabbitmqLearning-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_20_publisherconfirms_springboot_02/springboot_ack.iml" filepath="$PROJECT_DIR$/demo_20_publisherconfirms_springboot_02/springboot_ack.iml" />
+    </modules>
+  </component>
+</project>

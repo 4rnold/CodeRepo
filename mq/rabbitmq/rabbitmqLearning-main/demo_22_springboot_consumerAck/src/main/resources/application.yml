@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: consumer_ack
+  rabbitmq:
+    host: handsomejay.work
+    virtual-host: /
+    username: admin
+    password: admin
+    port: 5672
+    listener:
+      simple:
+        #        ack模式
+        acknowledge-mode: manual
+        #        属于全局配置，会被具体的配置覆盖
+        retry:
+          #          最大重试次数
+          max-attempts: 5
+          #          是否开启消费者重试（为false时关闭消费者重试，
+          # 意思不是“不重试”，而是一直收到消息直到jack确认或者一直到超时）
+          enabled: true
+          #          重试间隔时间（单位毫秒）
+          initial-interval: 5000
+        #       重试超过最大次数后是否拒绝
+        default-requeue-rejected: false

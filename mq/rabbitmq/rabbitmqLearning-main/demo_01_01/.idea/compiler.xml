@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo_13_spring_rabbit_anno_listener" />
+        <module name="demo_14_springboot_rabbitmq" />
+        <module name="demo_11_spring_rabbit_anno_producer" />
+        <module name="demo_06_routingmode" />
+        <module name="demo_15_springboot_consumer" />
+        <module name="demo_20_publisherconfirms_01" />
+        <module name="demo_18_dlx" />
+        <module name="demo_22_springboot_consumerAck" />
+        <module name="demo_09_spring_rabbit_xml_consumer" />
+        <module name="demo_23_consumerQos" />
+        <module name="demo_02_rabbitmq" />
+        <module name="demo_22_consumerAck" />
+        <module name="demo_10_spring_rabbit_xml_listener" />
+        <module name="demo_14_springboot_rabbitmq (1)" />
+        <module name="cd" />
+        <module name="demo_16_springboot_haproxy" />
+        <module name="demo_04_fanout" />
+        <module name="demo_20_publisherconfirms_springboot_02" />
+        <module name="demo_17_ttl_springboot" />
+        <module name="demo_24_tracing" />
+        <module name="demo_18_dlx_springboot" />
+        <module name="demo_21_persistent" />
+        <module name="demo_08_spring_rabbit_xml" />
+        <module name="demo_07_topicmode" />
+        <module name="demo_05_default_ex" />
+        <module name="demo_17_ttl" />
+        <module name="demo_19_delayed_exchange" />
+        <module name="demo_03_workqueue" />
+        <module name="demo_12_spring_rabbit_anno_consumer" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo_14_springboot_rabbitmq" options="-parameters" />
+      <module name="demo_14_springboot_rabbitmq (1)" options="-parameters" />
+      <module name="demo_15_springboot_consumer" options="-parameters" />
+      <module name="demo_16_springboot_haproxy" options="-parameters" />
+      <module name="demo_17_ttl_springboot" options="-parameters" />
+      <module name="demo_18_dlx_springboot" options="-parameters" />
+      <module name="demo_19_delayed_exchange" options="-parameters" />
+      <module name="demo_20_publisherconfirms_springboot_02" options="-parameters" />
+      <module name="demo_22_springboot_consumerAck" options="-parameters" />
+    </option>
+  </component>
+</project>

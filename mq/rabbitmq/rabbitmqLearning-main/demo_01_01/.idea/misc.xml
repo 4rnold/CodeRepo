@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../demo_02_rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_03_workqueue/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_04_fanout/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_05_default_ex/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_06_routingmode/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_07_topicmode/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_08_spring_rabbit_xml/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_09_spring_rabbit_xml_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_10_spring_rabbit_xml_listener/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_11_spring_rabbit_anno_producer/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_12_spring_rabbit_anno_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_13_spring_rabbit_anno_listener/pom.xml" />
+        <option value="$PROJECT_DIR$/demo_14_springboot_rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_14_springboot_rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_14_springboot_rabbitmq (2)/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_14_springboot_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_15_springboot_consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_20_publiserconfirms_01/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_20_publisherconfirms_01/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_20_publisherconfirms_springboot_02/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_21_persistent/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_22_consumerAck/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_22_springboot_consumerAck/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_23_consumerQos/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_24_tracing/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_17_ttl/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_17_ttl_springboot/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_18_dlx/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_18_dlx_springboot/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_19_delayed_exchange/pom.xml" />
+        <option value="$PROJECT_DIR$/../demo_16_springboot_haproxy/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

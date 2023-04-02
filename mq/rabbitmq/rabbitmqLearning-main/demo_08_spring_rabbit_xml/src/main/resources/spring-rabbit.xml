@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!--创建连接工厂-->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="handsomejay.work" virtual-host="/"
+                               username="admin" password="admin"
+                               port="5672" />
+
+    <!--用于自动向RabbitMQ声明队列、交换器、绑定等操作的工具类-->
+    <rabbit:admin id="rabbitAdmin" connection-factory="connectionFactory" />
+    <!--用于简化操作的模板类-->
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory" />
+
+    <!--声明一个消息队列-->
+    <rabbit:queue id="q1" name="queue.q1" durable="false" exclusive="false" auto-delete="false" />
+
+    <!--声明交换器-->
+    <rabbit:direct-exchange name="ex.direct" durable="false" auto-delete="false" id="directExchange">
+<!--        <rabbit:exchange-arguments>-->
+<!--            <entry key="" value=""/>-->
+<!--        </rabbit:exchange-arguments>-->
+        <rabbit:bindings>
+            <!--key表示绑定键-->
+            <!--queue表示将交换器绑定到哪个消息队列，使用bean的id，不要使用队列的名字-->
+            <!--exchange表示将交换器绑定到哪个交换器-->
+<!--            <rabbit:binding queue="" key="" exchange=""></rabbit:binding>-->
+            <rabbit:binding queue="q1" key="routing.q1" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+
+</beans>

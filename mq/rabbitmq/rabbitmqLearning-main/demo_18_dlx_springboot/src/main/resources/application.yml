@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: dlx
+  rabbitmq:
+    host: handsomejay.work
+    virtual-host: /
+    username: admin
+    password: admin
+    port: 5672

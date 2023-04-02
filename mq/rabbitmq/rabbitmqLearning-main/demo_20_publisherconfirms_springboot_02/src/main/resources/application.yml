@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: springboot_rabbit
+  rabbitmq:
+    host: handsomejay.work
+    virtual-host: /
+    username: admin
+    password: admin
+    port: 5672
+    publisher-confirm-type: correlated
+    publisher-returns: true

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo_13_spring_rabbit_anno_listener" />
+        <module name="demo_14_springboot_rabbitmq" />
+        <module name="demo_11_spring_rabbit_anno_producer" />
+        <module name="demo_06_routingmode" />
+        <module name="demo_18_dlx" />
+        <module name="demo_15_springboot_consumer" />
+        <module name="demo_20_publisherconfirms_01" />
+        <module name="demo_22_springboot_consumerAck" />
+        <module name="demo_09_spring_rabbit_xml_consumer" />
+        <module name="demo_23_consumerQos" />
+        <module name="demo_02_rabbitmq" />
+        <module name="demo_22_consumerAck" />
+        <module name="demo_10_spring_rabbit_xml_listener" />
+        <module name="demo_14_springboot_rabbitmq (1)" />
+        <module name="demo_16_springboot_haproxy" />
+        <module name="demo_04_fanout" />
+        <module name="demo_17_ttl_springboot" />
+        <module name="demo_24_tracing" />
+        <module name="demo_18_dlx_springboot" />
+        <module name="demo_21_persistent" />
+        <module name="demo_08_spring_rabbit_xml" />
+        <module name="demo_07_topicmode" />
+        <module name="demo_05_default_ex" />
+        <module name="demo_17_ttl" />
+        <module name="demo_19_delayed_exchange" />
+        <module name="demo_03_workqueue" />
+        <module name="demo_12_spring_rabbit_anno_consumer" />
+        <module name="springboot_ack" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo_02_rabbitmq" target="1.8" />
+      <module name="demo_03_workqueue" target="1.8" />
+      <module name="demo_04_fanout" target="1.8" />
+      <module name="demo_05_default_ex" target="1.8" />
+      <module name="demo_06_routingmode" target="1.8" />
+      <module name="demo_07_topicmode" target="1.8" />
+      <module name="demo_08_spring_rabbit_xml" target="1.8" />
+      <module name="demo_09_spring_rabbit_xml_consumer" target="1.8" />
+      <module name="demo_10_spring_rabbit_xml_listener" target="1.8" />
+      <module name="demo_11_spring_rabbit_anno_producer" target="1.8" />
+      <module name="demo_12_spring_rabbit_anno_consumer" target="1.8" />
+      <module name="demo_13_spring_rabbit_anno_listener" target="1.8" />
+      <module name="demo_14_springboot_rabbitmq" target="1.8" />
+      <module name="demo_14_springboot_rabbitmq (1)" target="1.8" />
+      <module name="demo_15_springboot_consumer" target="1.8" />
+      <module name="demo_16_springboot_haproxy" target="1.8" />
+      <module name="demo_17_ttl" target="1.8" />
+      <module name="demo_17_ttl_springboot" target="1.8" />
+      <module name="demo_18_dlx" target="1.8" />
+      <module name="demo_18_dlx_springboot" target="1.8" />
+      <module name="demo_19_delayed_exchange" target="1.8" />
+      <module name="demo_20_publisherconfirms_01" target="1.8" />
+      <module name="demo_21_persistent" target="1.8" />
+      <module name="demo_22_consumerAck" target="1.8" />
+      <module name="demo_22_springboot_consumerAck" target="1.8" />
+      <module name="demo_23_consumerQos" target="1.8" />
+      <module name="demo_24_tracing" target="1.8" />
+      <module name="springboot_ack" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo_14_springboot_rabbitmq" options="-parameters" />
+      <module name="demo_14_springboot_rabbitmq (1)" options="-parameters" />
+      <module name="demo_15_springboot_consumer" options="-parameters" />
+      <module name="demo_16_springboot_haproxy" options="-parameters" />
+      <module name="demo_17_ttl_springboot" options="-parameters" />
+      <module name="demo_18_dlx_springboot" options="-parameters" />
+      <module name="demo_19_delayed_exchange" options="-parameters" />
+      <module name="demo_22_springboot_consumerAck" options="-parameters" />
+      <module name="springboot_ack" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>hitch-gateway</module>
+        <module>hitch-account</module>
+        <module>hitch-commons</module>
+        <module>hitch-payment</module>
+        <module>hitch-stroke</module>
+        <module>hitch-storage</module>
+        <module>hitch-order</module>
+        <module>hitch-modules</module>
+        <module>hitch-notice</module>
+    </modules>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+    </parent>
+
+
+    <groupId>com.heima</groupId>
+    <artifactId>hitch</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+
+        <!--harbor 仓库地址-->
+        <docker.registry.url>manager-hongbaoyu-java.itheima.net:8443</docker.registry.url>
+        <!--harbor 的项目名称-->
+        <docker.registry.name>library</docker.registry.name>
+        <!--harbor账号-->
+        <docker.registry.username>itcast</docker.registry.username>
+        <!--harbor密码-->
+        <docker.registry.password>Qwert123</docker.registry.password>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <spring-cloud.alibaba.version>2.2.1.RELEASE</spring-cloud.alibaba.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring-cloud.alibaba.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-cloud.alibaba.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${spring-cloud.alibaba.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+                <version>${spring-cloud.alibaba.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <!-- 是否开启发布版构件下载 -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!-- 是否开启快照版构件下载 -->
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <profiles>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+                <wx.notify.addr>http://portal-hongbaoyu-java.itheima.net/payment/api/nofify</wx.notify.addr>
+                <mysql.addr>127.0.0.1:3306</mysql.addr>
+                <rocket.addr>116.62.213.90:10901</rocket.addr>
+                <nacos.addr>116.62.213.90:9105</nacos.addr>
+                <redis.host>116.62.213.90</redis.host>
+                <redis.port>9010</redis.port>
+                <mongo.host>116.62.213.90</mongo.host>
+                <mongo.port>8090</mongo.port>
+                <rabbit.host>116.62.213.90</rabbit.host>
+                <rabbit.port>5672</rabbit.port>
+                <kafka.addr>116.62.213.90:9103</kafka.addr>
+                <fastdfs.addr>116.62.213.90:22122</fastdfs.addr>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+                <wx.notify.addr>http://portal-hongbaoyu-java.itheima.net/payment/api/nofify</wx.notify.addr>
+                <mysql.addr>116.62.213.90:3306</mysql.addr>
+                <rocket.addr>116.62.213.90:10901</rocket.addr>
+                <nacos.addr>116.62.213.90:9105</nacos.addr>
+                <redis.host>116.62.213.90</redis.host>
+                <redis.port>9010</redis.port>
+                <mongo.host>116.62.213.90</mongo.host>
+                <mongo.port>8090</mongo.port>
+                <rabbit.host>116.62.213.90</rabbit.host>
+                <rabbit.port>5672</rabbit.port>
+                <kafka.addr>116.62.213.90:9103</kafka.addr>
+                <fastdfs.addr>116.62.213.90:22122</fastdfs.addr>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>pro</id>
+            <properties>
+                <profiles.active>pro</profiles.active>
+                <wx.notify.addr>http://portal-hongbaoyu-java.itheima.net/payment/api/nofify</wx.notify.addr>
+                <mysql.addr>172.17.0.1:3306</mysql.addr>
+                <rocket.addr>172.17.0.1:10901</rocket.addr>
+                <nacos.addr>hitch-nacos:8848</nacos.addr>
+                <redis.host>172.17.0.1</redis.host>
+                <redis.port>9010</redis.port>
+                <mongo.host>172.17.0.1</mongo.host>
+                <mongo.port>8090</mongo.port>
+                <rabbit.host>172.17.0.1</rabbit.host>
+                <rabbit.port>5672</rabbit.port>
+                <kafka.addr>116.62.213.90:9103</kafka.addr>
+                <fastdfs.addr>116.62.213.90:22122</fastdfs.addr>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

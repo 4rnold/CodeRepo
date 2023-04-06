@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hitch</artifactId>
+        <groupId>com.heima</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hitch-payment</artifactId>
+
+    <properties>
+        <!--启动服务端口号-->
+        <project.server.prot>8004</project.server.prot>
+        <!--启动服务名称-->
+        <project.server.name>${artifactId}-server</project.server.name>
+        <!--访问统一前缀-->
+        <project.context.path>/payment</project.context.path>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.heima</groupId>
+            <artifactId>hitch-modules</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.heima</groupId>
+            <artifactId>hitch-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--nacos 注册中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--nacos 配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--健康检查依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <!--在引用时请在maven中央仓库搜索2.X最新版本号-->
+            <version>2.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>red.htt</groupId>
+            <artifactId>wxpay-sdk</artifactId>
+            <version>3.0.9.1</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Docker maven plugin -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.8.0</version>
+                <configuration>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <!--from节点用来设置镜像的基础镜像，相当于Docerkfile中的FROM关键字-->
+                    <from>
+                        <!--使用openjdk官方镜像，tag是:8-jdk-alpine，表示镜像的操作系统是alpine,装好了jdk8-->
+                        <image>openjdk:8-jdk-alpine</image>
+                    </from>
+                    <to>
+                        <!--镜像名称和tag，使用了mvn内置变量${project.version}，表示当前工程的version-->
+                        <image>${docker.registry.url}/${docker.registry.name}/${project.artifactId}:${project.version}
+                        </image>
+                        <tags>
+                            <!--版本号-->
+                            <tag>${project.version}</tag>
+                        </tags>
+                        <!--harbor的认证信息-->
+                        <auth>
+                            <username>${docker.registry.username}</username>
+                            <password>${docker.registry.password}</password>
+                        </auth>
+                    </to>
+                    <!--容器相关的属性-->
+                    <container>
+
+                        <jvmFlags>
+                            <!--一些启动参数-->
+                            <jvmFlag>-Djava.security.edg=file:/dev/./urandom</jvmFlag>
+                        </jvmFlags>
+                        <!--挂载volume的配置-->
+                        <volumes>
+                            <volume>/tmp</volume>
+                            <volume>/logs</volume>
+                        </volumes>
+                        <ports>
+                            <!--暴漏端口号-->
+                            <port>${project.server.prot}</port>
+                        </ports>
+
+                        <format>OCI</format>
+                        <!--使用该参数将镜像的创建时间与系统时间对其-->
+                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                    </container>
+                </configuration>
+                <executions>
+                    <!--执行打包配置-->
+                    <execution>
+                        <id>jib-maven-plugin</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Docker maven plugin -->
+        </plugins>
+    </build>
+
+
+</project>

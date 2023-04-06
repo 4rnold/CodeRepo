@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.storage.mapper.VehicleMapper">
+    <resultMap id="BaseResultMap" type="com.heima.modules.po.VehiclePO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="car_number" jdbcType="VARCHAR" property="carNumber"/>
+        <result column="car_front_photo" jdbcType="VARCHAR" property="carFrontPhoto"/>
+        <result column="car_back_photo" jdbcType="VARCHAR" property="carBackPhoto"/>
+        <result column="car_side_photo" jdbcType="VARCHAR" property="carSidePhoto"/>
+        <result column="purchase_date" jdbcType="DATE" property="purchaseDate"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="REVISION" jdbcType="INTEGER" property="revision"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy"/>
+        <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, car_number, car_front_photo, car_back_photo, car_side_photo, purchase_date, phone,
+    status, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_vehicle
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_vehicle
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+
+
+
+    <select id="selectList" parameterType="com.heima.modules.po.VehiclePO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_vehicle
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="carNumber!=null and carNumber!=''">
+                and car_number = #{carNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="carFrontPhoto!=null and carFrontPhoto!=''">
+                and car_front_photo = #{carFrontPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="carBackPhoto!=null and carBackPhoto!=''">
+                and car_back_photo = #{carBackPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="carSidePhoto!=null and carSidePhoto!=''">
+                and car_side_photo = #{carSidePhoto,jdbcType=INTEGER}
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_vehicle
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.heima.modules.po.VehiclePO">
+        insert into t_vehicle (id,car_number, car_front_photo, car_back_photo,
+        car_side_photo, purchase_date, phone,
+        status, REVISION, CREATED_BY,
+        CREATED_TIME, UPDATED_BY, UPDATED_TIME
+        )
+        values (#{id,jdbcType=VARCHAR},#{carNumber,jdbcType=VARCHAR}, #{carFrontPhoto,jdbcType=VARCHAR}, #{carBackPhoto,jdbcType=VARCHAR},
+        #{carSidePhoto,jdbcType=VARCHAR}, #{purchaseDate,jdbcType=DATE}, #{phone,jdbcType=VARCHAR},
+        #{status,jdbcType=TINYINT}, #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR},
+        #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.heima.modules.po.VehiclePO">
+        insert into t_vehicle
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="carNumber != null">
+                car_number,
+            </if>
+            <if test="carFrontPhoto != null">
+                car_front_photo,
+            </if>
+            <if test="carBackPhoto != null">
+                car_back_photo,
+            </if>
+            <if test="carSidePhoto != null">
+                car_side_photo,
+            </if>
+            <if test="purchaseDate != null">
+                purchase_date,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="revision != null">
+                REVISION,
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY,
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME,
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY,
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            <if test="carNumber != null">
+                #{carNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="carFrontPhoto != null">
+                #{carFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="carBackPhoto != null">
+                #{carBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="carSidePhoto != null">
+                #{carSidePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseDate != null">
+                #{purchaseDate,jdbcType=DATE},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.heima.modules.po.VehiclePO">
+        update t_vehicle
+        <set>
+            <if test="carNumber != null">
+                car_number = #{carNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="carFrontPhoto != null">
+                car_front_photo = #{carFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="carBackPhoto != null">
+                car_back_photo = #{carBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="carSidePhoto != null">
+                car_side_photo = #{carSidePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="purchaseDate != null">
+                purchase_date = #{purchaseDate,jdbcType=DATE},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                REVISION = #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.heima.modules.po.VehiclePO">
+    update t_vehicle
+    set car_number = #{carNumber,jdbcType=VARCHAR},
+      car_front_photo = #{carFrontPhoto,jdbcType=VARCHAR},
+      car_back_photo = #{carBackPhoto,jdbcType=VARCHAR},
+      car_side_photo = #{carSidePhoto,jdbcType=VARCHAR},
+      purchase_date = #{purchaseDate,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -11,7 +11,7 @@ public class MyProducer {
         final Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
-        channel.queueDeclare("queue.tc.demo", false, false, false, null);
+        channel.queueDeclare("queue.tc.demo", false,  false, false, null);
         channel.exchangeDeclare("ex.tc.demo", "direct", false);
         channel.queueBind("queue.tc.demo", "ex.tc.demo", "key.tc");
 

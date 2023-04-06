@@ -1,0 +1,57 @@
+server:
+  port: @project.server.prot@
+spring:
+  application:
+    name: @project.server.name@
+  cloud:
+    nacos:
+      server-addr: @nacos.addr@
+    gateway:
+      routes:
+        # 账户服务API代理
+        - id: hitch-account-server
+          uri: lb://hitch-account-server
+          predicates:
+            - Path=/account/**
+        # 库存服务API代理
+        - id: hitch-storage-server
+          uri: lb://hitch-storage-server
+          predicates:
+            - Path=/storage/**
+        # 行程服务
+        - id: hitch-stroke-server
+          uri: lb://hitch-stroke-server
+          predicates:
+            - Path=/stroke/**
+        # 订单服务
+        - id: hitch-order-server
+          uri: lb://hitch-order-server
+          predicates:
+            - Path=/order/**
+        # 支付管理
+        - id: hitch-payment-server
+          uri: lb://hitch-payment-server
+          predicates:
+            - Path=/payment/**
+        # 存储管理
+        - id: hitch-storage-server
+          uri: lb://hitch-storage-server
+          predicates:
+            - Path=/storage/**
+        # 通知服务
+        - id: hitch-notice-server
+          uri: lb://hitch-notice-server
+          predicates:
+            - Path=/notice/**
+        # 消息推送服务 websocket代理
+        - id: hitch-notice-service-ws
+          uri: lb:ws://hitch-notice-service
+          predicates:
+            - Path=/ws/**
+      default-filters:
+        - TokenAuth=/account/api/login;/account/api/register;/payment/api/nofify
+
+  redis:
+    host: @redis.host@
+    port: @redis.port@
+    timeout: 1000

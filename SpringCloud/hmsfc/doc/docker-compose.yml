@@ -1,0 +1,100 @@
+version: '2'   
+services:
+    hitch-nacos:
+        image: nacos/nacos-server
+        restart: always
+        ports:
+            - "10011:8848"
+        networks:
+            - hitch-network
+        environment:
+            MODE: 'standalone'
+            JVM_XMS: '128m'
+            JVM_XMX: '128m'    
+
+    hitch-gateway:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-gateway:1.0-SNAPSHOT
+        restart: always
+        networks:
+            - hitch-network
+        ports:
+            - "10010:8888"
+        depends_on:
+            - hitch-nacos           
+        volumes:
+            - "/tmp/data/logs:/logs"
+
+    hitch-storage:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-storage:1.0-SNAPSHOT
+        restart: always
+        networks:
+            - hitch-network
+        ports:
+            - "10013:8003"
+        depends_on:
+            - hitch-nacos
+            
+        volumes:
+            - "/tmp/data/logs:/logs"
+    hitch-account:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-account:1.0-SNAPSHOT
+        restart: always
+        ports:
+            - "10017:8007"
+        networks:
+            - hitch-network
+        depends_on:
+            - hitch-nacos            
+        volumes:
+            - "/tmp/data/logs:/logs"
+
+    hitch-stroke:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-stroke:1.0-SNAPSHOT
+        restart: always
+        ports:
+            - "10012:8002"
+        networks:
+            - hitch-network
+        depends_on:
+            - hitch-nacos            
+        volumes:
+            - "/tmp/data/logs:/logs"
+
+    hitch-order:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-order:1.0-SNAPSHOT
+        restart: always
+        ports:
+            - "10015:8005"
+        networks:
+            - hitch-network
+        depends_on:
+            - hitch-nacos            
+        volumes:
+            - "/tmp/data/logs:/logs"      
+ 
+    hitch-payment:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-payment:1.0-SNAPSHOT
+        restart: always
+        ports:
+            - "10014:8004"
+        networks:
+            - hitch-network
+        depends_on:
+            - hitch-nacos            
+        volumes:
+            - "/tmp/data/logs:/logs"                 
+
+    hitch-notice:
+        image: manager-hongbaoyu-java.itheima.net:8443/library/hitch-notice:1.0-SNAPSHOT
+        restart: always
+        ports:
+            - "10016:8006"
+        networks:
+            - hitch-network
+        depends_on:
+            - hitch-nacos            
+        volumes:
+            - "/tmp/data/logs:/logs" 
+networks:
+    hitch-network:
+        driver: bridge

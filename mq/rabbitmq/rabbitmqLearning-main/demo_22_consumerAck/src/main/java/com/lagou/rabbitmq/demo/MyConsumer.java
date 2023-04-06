@@ -32,7 +32,8 @@ public class MyConsumer {
                 // 确认消息
 //                channel.basicAck(envelope.getDeliveryTag(), false);
 
-                // 第一个参数是消息的标签，第二个参数表示不确认多个消息还是一个消息
+                // 第一个参数是消息的标签，
+                // 第二个参数表示不确认多个消息还是一个消息
                 // 第三个参数表示不确认的消息是否需要重新入列，然后重发
                 // 可以用于拒收多条消息
 //                channel.basicNack(envelope.getDeliveryTag(), false, true);

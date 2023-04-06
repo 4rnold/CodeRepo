@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.storage.mapper.OrderShadowMapper">
+    <resultMap id="BaseResultMap" type="com.heima.modules.po.OrderPO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="passenger_id" jdbcType="VARCHAR" property="passengerId"/>
+        <result column="passenger_stroke_id" jdbcType="VARCHAR" property="passengerStrokeId"/>
+        <result column="driver_id" jdbcType="VARCHAR" property="driverId"/>
+        <result column="driver_stroke_id" jdbcType="VARCHAR" property="driverStrokeId"/>
+        <result column="distance" jdbcType="INTEGER" property="distance"/>
+        <result column="estimated_time" jdbcType="INTEGER" property="estimatedTime"/>
+        <result column="cost" jdbcType="FLOAT" property="cost"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="REVISION" jdbcType="INTEGER" property="revision"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy"/>
+        <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, passenger_id, passenger_stroke_id, driver_id, driver_stroke_id,distance,estimated_time, cost,status,
+    REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_order_shadow
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectPaidList" parameterType="com.heima.modules.po.OrderPO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_order_shadow
+        <where>
+            and status in(1,2)
+            and ( passenger_id = #{passengerId,jdbcType=VARCHAR} or driver_id = #{driverId,jdbcType=VARCHAR})
+
+        </where>
+    </select>
+
+
+    <select id="selectList" parameterType="com.heima.modules.po.OrderPO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_order_shadow
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="passengerId!=null and passengerId!=''">
+                and passenger_id = #{passengerId,jdbcType=VARCHAR}
+            </if>
+            <if test="driverId!=null and driverId!=''">
+                and driver_id = #{driverId,jdbcType=VARCHAR}
+            </if>
+            <if test="passengerStrokeId!=null and passengerStrokeId!=''">
+                and passenger_stroke_id = #{passengerStrokeId,jdbcType=VARCHAR}
+            </if>
+            <if test="driverStrokeId!=null and driverStrokeId!=''">
+                and driver_stroke_id = #{driverStrokeId,jdbcType=VARCHAR}
+            </if>
+            <if test="distance!=null and distance!=''">
+                and distance = #{distance,jdbcType=INTEGER}
+            </if>
+            <if test="estimatedTime!=null and estimatedTime!=''">
+                and estimated_time = #{estimatedTime,jdbcType=INTEGER}
+            </if>
+            <if test="cost!=null and driverStrokeId!=''">
+                and cost = #{cost,jdbcType=FLOAT}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+
+    <select id="selectAvailableList" parameterType="com.heima.modules.po.OrderPO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_order_shadow
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="passengerId!=null and passengerId!=''">
+                and passenger_id = #{passengerId,jdbcType=VARCHAR}
+            </if>
+            <if test="driverId!=null and driverId!=''">
+                and driver_id = #{driverId,jdbcType=VARCHAR}
+            </if>
+            <if test="passengerStrokeId!=null and passengerStrokeId!=''">
+                and passenger_stroke_id = #{passengerStrokeId,jdbcType=VARCHAR}
+            </if>
+            <if test="driverStrokeId!=null and driverStrokeId!=''">
+                and driver_stroke_id = #{driverStrokeId,jdbcType=VARCHAR}
+            </if>
+            <if test="distance!=null and distance!=''">
+                and distance = #{distance,jdbcType=INTEGER}
+            </if>
+            <if test="estimatedTime!=null and estimatedTime!=''">
+                and estimated_time = #{estimatedTime,jdbcType=INTEGER}
+            </if>
+            <if test="cost!=null and driverStrokeId!=''">
+                and cost = #{cost,jdbcType=FLOAT}
+            </if>
+            and status >= #{status,jdbcType=INTEGER}
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_order_shadow
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.heima.modules.po.OrderPO">
+    insert into t_order_shadow (id,passenger_id, passenger_stroke_id, driver_id,
+      driver_stroke_id,distance,estimated_time, cost, status,
+      REVISION, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME)
+    values (#{id,jdbcType=VARCHAR},#{passengerId,jdbcType=VARCHAR}, #{passengerStrokeId,jdbcType=VARCHAR}, #{driverId,jdbcType=VARCHAR},
+      #{driverStrokeId,jdbcType=VARCHAR},#{distance,jdbcType=INTEGER},#{estimatedTime,jdbcType=INTEGER},#{cost,jdbcType=FLOAT},#{status,jdbcType=TINYINT},
+      #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.heima.modules.po.OrderPO">
+        insert into t_order_shadow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="passengerId != null">
+                passenger_id,
+            </if>
+            <if test="passengerStrokeId != null">
+                passenger_stroke_id,
+            </if>
+            <if test="driverId != null">
+                driver_id,
+            </if>
+            <if test="driverStrokeId != null">
+                driver_stroke_id,
+            </if>
+            <if test="distance != null">
+                distance,
+            </if>
+            <if test="estimatedTime != null">
+                estimated_time,
+            </if>
+            <if test="cost != null">
+                cost,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="revision != null">
+                REVISION,
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY,
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME,
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY,
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR}
+            <if test="passengerId != null">
+                #{passengerId,jdbcType=VARCHAR},
+            </if>
+            <if test="passengerStrokeId != null">
+                #{passengerStrokeId,jdbcType=VARCHAR},
+            </if>
+            <if test="driverId != null">
+                #{driverId,jdbcType=VARCHAR},
+            </if>
+            <if test="driverStrokeId != null">
+                #{driverStrokeId,jdbcType=VARCHAR},
+            </if>
+            <if test="distance != null">
+                #{distance,jdbcType=INTEGER},
+            </if>
+            <if test="estimatedTime != null">
+                #{estimatedTime,jdbcType=INTEGER},
+            </if>
+            <if test="cost != null">
+                #{cost,jdbcType=FLOAT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.heima.modules.po.OrderPO">
+        update t_order_shadow
+        <set>
+            <if test="passengerId != null">
+                passenger_id = #{passengerId,jdbcType=VARCHAR},
+            </if>
+            <if test="passengerStrokeId != null">
+                passenger_stroke_id = #{passengerStrokeId,jdbcType=VARCHAR},
+            </if>
+            <if test="driverId != null">
+                driver_id = #{driverId,jdbcType=VARCHAR},
+            </if>
+            <if test="driverStrokeId != null">
+                driver_stroke_id = #{driverStrokeId,jdbcType=VARCHAR},
+            </if>
+            <if test="distance != null">
+                distance = #{distance,jdbcType=INTEGER},
+            </if>
+            <if test="estimatedTime != null">
+                estimated_time = #{estimatedTime,jdbcType=INTEGER},
+            </if>
+            <if test="cost != null">
+                cost = #{cost,jdbcType=FLOAT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                REVISION = #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.heima.modules.po.OrderPO">
+    update t_order_shadow
+    set passenger_id = #{passengerId,jdbcType=VARCHAR},
+      passenger_stroke_id = #{passengerStrokeId,jdbcType=VARCHAR},
+      driver_id = #{driverId,jdbcType=VARCHAR},
+      driver_stroke_id = #{driverStrokeId,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=INTEGER},
+      estimated_time = #{estimatedTime,jdbcType=INTEGER},
+      cost = #{cost,jdbcType=FLOAT},
+      status = #{status,jdbcType=TINYINT},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

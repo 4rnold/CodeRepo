@@ -1,0 +1,14 @@
+server:
+  port: @project.server.prot@
+  servlet:
+    context-path: @project.context.path@
+spring:
+  application:
+    name: @project.server.name@
+  cloud:
+    nacos:
+      server-addr: @nacos.addr@
+      config:
+        server-addr: @nacos.addr@
+        prefix: taxi-feign-common
+        file-extension: yaml

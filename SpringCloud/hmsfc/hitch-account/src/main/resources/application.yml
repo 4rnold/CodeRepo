@@ -1,0 +1,15 @@
+spring:
+  redis:
+    host: @redis.host@
+    port: @redis.port@
+    timeout: 1000
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1000
+        max-idle: 500
+        min-idle: 0
+
+baidu:
+  apikey: 1bWiPw7AkKT09OhslQMRFf0S
+  secretkey: 0muaHpO6Lp5FIppMP5MZwqAIN7i7IaXo

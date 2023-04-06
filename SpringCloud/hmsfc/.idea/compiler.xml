@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hitch-stroke" />
+        <module name="hitch-gateway" />
+        <module name="hitch-commons" />
+        <module name="hitch-storage" />
+        <module name="hitch-modules" />
+        <module name="hitch-order" />
+        <module name="hitch-account" />
+        <module name="hitch-payment" />
+        <module name="hitch-notice" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hitch-account" options="-parameters" />
+      <module name="hitch-commons" options="-parameters" />
+      <module name="hitch-gateway" options="-parameters" />
+      <module name="hitch-modules" options="-parameters" />
+      <module name="hitch-notice" options="-parameters" />
+      <module name="hitch-order" options="-parameters" />
+      <module name="hitch-payment" options="-parameters" />
+      <module name="hitch-storage" options="-parameters" />
+      <module name="hitch-stroke" options="-parameters" />
+    </option>
+  </component>
+</project>

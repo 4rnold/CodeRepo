@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.storage.mapper.StrokeMapper">
+    <resultMap id="BaseResultMap" type="com.heima.modules.po.StrokePO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="publisher_id" jdbcType="VARCHAR" property="publisherId"/>
+        <result column="role" jdbcType="TINYINT" property="role"/>
+        <result column="start_geo_lng" jdbcType="VARCHAR" property="startGeoLng"/>
+        <result column="start_geo_lat" jdbcType="VARCHAR" property="startGeoLat"/>
+        <result column="start_addr" jdbcType="VARCHAR" property="startAddr"/>
+        <result column="end_geo_lng" jdbcType="VARCHAR" property="endGeoLng"/>
+        <result column="end_geo_lat" jdbcType="VARCHAR" property="endGeoLat"/>
+        <result column="end_addr" jdbcType="VARCHAR" property="endAddr"/>
+        <result column="quantity" jdbcType="TINYINT" property="quantity"/>
+        <result column="departure_time" jdbcType="TIMESTAMP" property="departureTime"/>
+        <result column="quick_confirm" jdbcType="TINYINT" property="quickConfirm"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="REVISION" jdbcType="INTEGER" property="revision"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy"/>
+        <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, publisher_id, role, start_geo_lng,start_geo_lat,start_addr, end_geo_lng,end_geo_lat, end_addr, quantity, departure_time,
+    quick_confirm, status, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_stroke
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectList" parameterType="com.heima.modules.po.StrokePO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_stroke
+        <where>
+            <if test="id!=null and id!=''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="publisherId!=null and publisherId!=''">
+                and publisher_id = #{publisherId,jdbcType=VARCHAR}
+            </if>
+            <if test="role != null">
+                and role = #{role,jdbcType=TINYINT}
+            </if>
+            <if test="quantity != null">
+                and quantity = #{quantity,jdbcType=TINYINT}
+            </if>
+            <if test="departureTime != null">
+                and departure_time = #{departureTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="quickConfirm != null">
+                and quick_confirm = #{quickConfirm,jdbcType=TINYINT}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+        order by departure_time desc
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_stroke
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.heima.modules.po.StrokePO">
+    insert into t_stroke (id,publisher_id, role,
+      start_geo_lng,start_geo_lat,start_addr, end_geo_lng,end_geo_lat, end_addr,
+      quantity, departure_time, quick_confirm, 
+      status, REVISION, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME
+      )
+    values (#{id},#{publisherId,jdbcType=VARCHAR}, #{role,jdbcType=TINYINT}, #{startGeoLng,jdbcType=VARCHAR},#{startGeoLat,jdbcType=VARCHAR},
+      #{startAddr,jdbcType=VARCHAR},#{endGeoLng,jdbcType=VARCHAR},#{endGeoLat,jdbcType=VARCHAR}, #{endAddr,jdbcType=VARCHAR},
+      #{quantity,jdbcType=TINYINT}, #{departureTime,jdbcType=TIMESTAMP}, #{quickConfirm,jdbcType=TINYINT},
+      #{status,jdbcType=TINYINT}, #{revision,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.heima.modules.po.StrokePO">
+        insert into t_stroke
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="publisherId != null">
+                publisher_id,
+            </if>
+            <if test="role != null">
+                role,
+            </if>
+            <if test="startGeoLng != null">
+                start_geo_lng,
+            </if>
+            <if test="startGeoLat != null">
+                start_geo_lat,
+            </if>
+            <if test="endGeoLng != null">
+                end_geo_lng,
+            </if>
+            <if test="endGeoLat != null">
+                end_geo_lat,
+            </if>
+            <if test="startAddr != null">
+                start_addr,
+            </if>
+            <if test="endAddr != null">
+                end_addr,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="departureTime != null">
+                departure_time,
+            </if>
+            <if test="quickConfirm != null">
+                quick_confirm,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="revision != null">
+                REVISION,
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY,
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME,
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY,
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,dbcType=VARCHAR}
+            <if test="publisherId != null">
+                #{publisherId,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=TINYINT},
+            </if>
+            <if test="startGeoLng != null">
+                #{startGeoLng,jdbcType=VARCHAR},
+            </if>
+            <if test="startGeoLat != null">
+                #{startGeoLat,jdbcType=VARCHAR},
+            </if>
+            <if test="endGeoLng != null">
+                #{endGeoLng,jdbcType=VARCHAR},
+            </if>
+            <if test="endGeoLat != null">
+                #{endGeoLat,jdbcType=VARCHAR},
+            </if>
+            <if test="startAddr != null">
+                #{startAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="endAddr != null">
+                #{endAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=TINYINT},
+            </if>
+            <if test="departureTime != null">
+                #{departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quickConfirm != null">
+                #{quickConfirm,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.heima.modules.po.StrokePO">
+        update t_stroke
+        <set>
+            <if test="publisherId != null">
+                publisher_id = #{publisherId,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                role = #{role,jdbcType=TINYINT},
+            </if>
+
+            <if test="startGeoLng != null">
+                start_geo_lng = #{startGeoLng,jdbcType=VARCHAR},
+            </if>
+            <if test="startGeoLat != null">
+                start_geo_lat = #{startGeoLat,jdbcType=VARCHAR},
+            </if>
+            <if test="endGeoLng != null">
+                end_geo_lng = #{endGeoLng,jdbcType=VARCHAR},
+            </if>
+            <if test="endGeoLat != null">
+                end_geo_lat = #{endGeoLat,jdbcType=VARCHAR},
+            </if>
+
+            <if test="startAddr != null">
+                start_addr = #{startAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="endAddr != null">
+                end_addr = #{endAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=TINYINT},
+            </if>
+            <if test="departureTime != null">
+                departure_time = #{departureTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quickConfirm != null">
+                quick_confirm = #{quickConfirm,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="revision != null">
+                REVISION = #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.heima.modules.po.StrokePO">
+    update t_stroke
+    set publisher_id = #{publisherId,jdbcType=VARCHAR},
+      role = #{role,jdbcType=TINYINT},
+      start_geo_lng = #{startGeoLng,jdbcType=VARCHAR},
+      start_geo_lat = #{startGeoLat,jdbcType=VARCHAR},
+      end_geo_lng = #{endGeoLng,jdbcType=VARCHAR},
+      end_geo_lat = #{endGeoLat,jdbcType=VARCHAR},
+      start_addr = #{startAddr,jdbcType=VARCHAR},
+      end_addr = #{endAddr,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=TINYINT},
+      departure_time = #{departureTime,jdbcType=TIMESTAMP},
+      quick_confirm = #{quickConfirm,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+</mapper>

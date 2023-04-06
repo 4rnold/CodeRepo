@@ -1,0 +1,67 @@
+server:
+  port: @project.server.prot@
+  servlet:
+    context-path: @project.context.path@
+spring:
+  application:
+    name: @project.server.name@
+    ######################### 数据源连接池的配置信息  #################
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://@mysql.addr@/hitch?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: hitch
+    password: hitch
+    initialSize: 10
+    minIdle: 20
+    maxActive: 100
+    maxWait: 60000
+  #### nacos 配置#######
+  cloud:
+    nacos:
+      server-addr: @nacos.addr@
+
+#  cache:
+#    type: redis
+#    redis:
+#      cache-null-values: false
+#      time-to-live: 600000ms
+#      use-key-prefix: true
+
+  redis:
+    host: @redis.host@
+    port: @redis.port@
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1000
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
+  rabbitmq:
+    host: @rabbit.host@
+    port: @rabbit.port@
+    username: guest
+    password: guest
+    virtual-host: /
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+fdfs:
+  so-timeout: 3000
+  connect-timeout: 1000
+  thumb-image:
+    width: 60
+    height: 60
+  tracker-list:
+    - @fastdfs.addr@
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.heima.modules.po
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

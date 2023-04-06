@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.storage.mapper.AuthenticationMapper">
+    <resultMap id="BaseResultMap" type="com.heima.modules.po.AuthenticationPO">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="useralias" jdbcType="VARCHAR" property="useralias"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="birth" jdbcType="VARCHAR" property="birth"/>
+        <result column="personal_photo" jdbcType="VARCHAR" property="personalPhoto"/>
+        <result column="card_id" jdbcType="VARCHAR" property="cardId"/>
+        <result column="card_id_front_photo" jdbcType="VARCHAR" property="cardIdFrontPhoto"/>
+        <result column="card_id_back_photo" jdbcType="VARCHAR" property="cardIdBackPhoto"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="REVISION" jdbcType="INTEGER" property="revision"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy"/>
+        <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, useralias, phone, birth, personal_photo, card_id, card_id_front_photo, card_id_back_photo,
+    status, REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_authentication
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_authentication
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_authentication
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.heima.modules.po.AuthenticationPO">
+        insert into t_authentication (id,useralias, phone, birth,
+        personal_photo, card_id, card_id_front_photo,
+        card_id_back_photo, status, REVISION,
+        CREATED_BY, CREATED_TIME, UPDATED_BY,
+        UPDATED_TIME)
+        values (#{id,jdbcType=VARCHAR},#{useralias,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR},
+        #{personalPhoto,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{cardIdFrontPhoto,jdbcType=VARCHAR},
+        #{cardIdBackPhoto,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{revision,jdbcType=INTEGER},
+        #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR},
+        #{updatedTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.heima.modules.po.AuthenticationPO">
+        insert into t_authentication
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="useralias != null">
+                useralias,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="personalPhoto != null">
+                personal_photo,
+            </if>
+            <if test="cardId != null">
+                card_id,
+            </if>
+            <if test="cardIdFrontPhoto != null">
+                card_id_front_photo,
+            </if>
+            <if test="cardIdBackPhoto != null">
+                card_id_back_photo,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="revision != null">
+                REVISION,
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY,
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME,
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY,
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            <if test="useralias != null">
+                #{useralias,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=VARCHAR},
+            </if>
+            <if test="personalPhoto != null">
+                #{personalPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cardId != null">
+                #{cardId,jdbcType=VARCHAR},
+            </if>
+            <if test="cardIdFrontPhoto != null">
+                #{cardIdFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cardIdBackPhoto != null">
+                #{cardIdBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="revision != null">
+                #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.heima.modules.po.AuthenticationPO">
+        update t_authentication
+        <set>
+            <if test="useralias != null">
+                useralias = #{useralias,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=VARCHAR},
+            </if>
+            <if test="personalPhoto != null">
+                personal_photo = #{personalPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cardId != null">
+                card_id = #{cardId,jdbcType=VARCHAR},
+            </if>
+            <if test="cardIdFrontPhoto != null">
+                card_id_front_photo = #{cardIdFrontPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="cardIdBackPhoto != null">
+                card_id_back_photo = #{cardIdBackPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="revision != null">
+                REVISION = #{revision,jdbcType=INTEGER},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedTime != null">
+                UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.heima.modules.po.AuthenticationPO">
+    update t_authentication
+    set useralias = #{useralias,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=VARCHAR},
+      personal_photo = #{personalPhoto,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      card_id_front_photo = #{cardIdFrontPhoto,jdbcType=VARCHAR},
+      card_id_back_photo = #{cardIdBackPhoto,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      REVISION = #{revision,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,6 @@
+wxpay:
+  appid: wx8397f8696b538317
+  mchid: 1473426802
+  key: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb
+  notifyUrl: @wx.notify.addr@
+  domain: api.mch.weixin.qq.com

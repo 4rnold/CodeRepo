@@ -1,0 +1,17 @@
+server:
+  port: 5555
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  zipkin:
+    base-url: http://172.17.0.225:9411/ # 指定了 Zipkin 服务器的地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.17.0.225:8848,172.17.0.225:8849,172.17.0.225:8850
+elasticsearch:
+  cluster_host: 172.17.0.225
+  eNode1_port: 9200
+  eNode2_port: 9201
+  eNode3_port: 9202

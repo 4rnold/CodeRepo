@@ -1,0 +1,6 @@
+com\itheima\controller\ElasticsearchDocController.class
+com\itheima\service\ElasticsearchDocumentService.class
+com\itheima\service\impl\ElasticsearchDocumentServiceImpl.class
+com\itheima\config\ElasticsearchConfig.class
+com\itheima\ServiceSearchApplication.class
+com\itheima\config\ElasticsearchConfig$1.class

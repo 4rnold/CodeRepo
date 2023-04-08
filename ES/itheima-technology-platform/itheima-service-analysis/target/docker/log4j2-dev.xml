@@ -1,0 +1,12 @@
+<Configuration>
+    <!--<Appenders>-->
+        <!--<Socket name="Socket" host="192.168.23.129" port="4567">-->
+            <!--<JsonLayout compact="true" eventEol="true" />-->
+        <!--</Socket>-->
+    <!--</Appenders>-->
+    <!--<Loggers>-->
+        <!--<Root level="info">-->
+            <!--<AppenderRef ref="Socket"/>-->
+        <!--</Root>-->
+    <!--</Loggers>-->
+</Configuration>

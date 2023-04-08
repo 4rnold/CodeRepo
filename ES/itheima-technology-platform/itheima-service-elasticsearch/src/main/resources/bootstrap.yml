@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: service-elasticsearch #微服务名称，对应dataId
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+     #配置中心服务地址
+        server-addr: 172.17.0.225:8848,172.17.0.225:8849,172.17.0.225:8850
+     #配置中心文件类型
+        file-extension: yml
+     #配置中心编码
+        encode: utf-8
+management:
+  endpoints:
+    web:
+       exposure:
+         include: '*'
+
+
+

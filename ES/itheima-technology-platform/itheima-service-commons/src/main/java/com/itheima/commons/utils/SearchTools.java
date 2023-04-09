@@ -155,7 +155,11 @@ public class SearchTools {
         //获取注册成功的注册解析器、建议器、排序
         NamedXContentRegistry registry = new NamedXContentRegistry(searchModule.getNamedXContents());
         //将前端传来的DSL参数通过解析解解析
-        XContentParser parser = XContentFactory.xContent(XContentType.JSON).createParser(registry, LoggingDeprecationHandler.INSTANCE, JSONObject.toJSONString(commonEntity.getMap()));
+        XContentParser parser = XContentFactory.xContent(XContentType.JSON).createParser(
+                registry,
+                LoggingDeprecationHandler.INSTANCE,
+                JSONObject.toJSONString(commonEntity.getMap())
+        );
         return parser;
     }
 

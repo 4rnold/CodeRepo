@@ -1,0 +1,11 @@
+server:
+  port: 6868 #eureka的端口号
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
+spring:
+  application:
+    name: tensquare-eureka

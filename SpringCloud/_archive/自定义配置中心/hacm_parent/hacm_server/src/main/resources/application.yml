@@ -1,0 +1,52 @@
+server:
+  port: 10025
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.138.6:3306/heima_acm
+    username: root
+    password: 123456
+  jpa:
+    database: mysql
+    show-sql: true
+  application:
+    name: config-server
+  mvc:
+    ##设置匹配后缀的请求的配置
+    pathmatch:
+      use-suffix-pattern: false
+      use-registered-suffix-pattern: true
+    contentnegotiation:
+      favor-path-extension: false
+  redis:
+    host: 192.168.138.6
+  rabbitmq:
+    host: 192.168.138.6
+  data:
+    mongodb:
+      host: 192.168.138.6
+      database: locos
+#分布式文件系统FastDFS配置
+fdfs:
+  so-timeout: 3000 #socket连接超时时长
+  connect-timeout: 3000 #连接tracker服务器超时时长
+  reqHost: 192.168.138.6 #nginx访问地址
+  reqPort: 8088 #nginx访问端口
+  tracker-list: 192.168.138.6:22122 #TrackerList参数,支持多个，我这里只有一个，如果有多个在下方加- x.x.x.x:port
+
+  pool:
+    jmx-enabled: false
+  #缩略图生成参数，后期可以作为图片上传功能
+  thumb-image:
+    width: 150
+    height: 150
+  file:
+    suffix: yml
+service:
+  disaster:
+    tolerance: FastDFS
+  cache: redis

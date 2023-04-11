@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Class-Path: tomcat-embed-el-8.5.29.jar netty-codec-4.1.23.Final.jar re
+ actor-core-3.1.6.RELEASE.jar spring-jcl-5.0.5.RELEASE.jar spring-secu
+ rity-rsa-1.0.5.RELEASE.jar reactive-streams-1.0.2.jar netty-handler-p
+ roxy-4.1.23.Final.jar spring-beans-5.0.5.RELEASE.jar spring-cloud-sta
+ rter-2.0.0.M9.jar spring-boot-starter-logging-2.0.1.RELEASE.jar jul-t
+ o-slf4j-1.7.25.jar netty-handler-4.1.23.Final.jar httpcore-4.4.9.jar 
+ log4j-api-2.10.0.jar jackson-datatype-jsr310-2.9.3.jar spring-core-5.
+ 0.5.RELEASE.jar spring-web-5.0.5.RELEASE.jar spring-boot-starter-amqp
+ -2.0.1.RELEASE.jar spring-boot-starter-json-2.0.1.RELEASE.jar jackson
+ -datatype-jdk8-2.9.3.jar spring-boot-starter-tomcat-2.0.1.RELEASE.jar
+  spring-security-crypto-5.0.4.RELEASE.jar jackson-module-parameter-na
+ mes-2.9.3.jar logback-classic-1.2.3.jar classmate-1.3.4.jar spring-bo
+ ot-starter-web-2.0.1.RELEASE.jar slf4j-api-1.7.25.jar netty-common-4.
+ 1.23.Final.jar httpclient-4.5.5.jar tomcat-embed-websocket-8.5.29.jar
+  netty-codec-http-4.1.23.Final.jar http-client-2.0.1.RELEASE.jar hibe
+ rnate-validator-6.0.9.Final.jar jackson-core-2.9.3.jar javax.annotati
+ on-api-1.3.2.jar reactor-netty-0.7.6.RELEASE.jar tomcat-embed-core-8.
+ 5.29.jar bcpkix-jdk15on-1.56.jar spring-tx-5.0.5.RELEASE.jar validati
+ on-api-2.0.1.Final.jar spring-webflux-5.0.5.RELEASE.jar spring-rabbit
+ -2.0.3.RELEASE.jar fastjson-1.2.51.jar spring-retry-1.2.2.RELEASE.jar
+  commons-collections4-4.2.jar spring-cloud-commons-2.0.0.M9.jar tomca
+ t-annotations-api-8.5.29.jar log4j-to-slf4j-2.10.0.jar spring-amqp-2.
+ 0.3.RELEASE.jar spring-boot-starter-2.0.1.RELEASE.jar netty-resolver-
+ 4.1.23.Final.jar netty-transport-native-unix-common-4.1.23.Final.jar 
+ spring-boot-2.0.1.RELEASE.jar spring-messaging-5.0.5.RELEASE.jar spri
+ ng-aop-5.0.5.RELEASE.jar spring-webmvc-5.0.5.RELEASE.jar jackson-data
+ bind-2.9.3.jar netty-transport-4.1.23.Final.jar netty-codec-socks-4.1
+ .23.Final.jar bcprov-jdk15on-1.56.jar spring-boot-autoconfigure-2.0.1
+ .RELEASE.jar spring-cloud-context-2.0.0.M9.jar spring-expression-5.0.
+ 5.RELEASE.jar logback-core-1.2.3.jar jackson-annotations-2.9.0.jar ne
+ tty-transport-native-epoll-4.1.23.Final.jar netty-buffer-4.1.23.Final
+ .jar snakeyaml-1.19.jar spring-context-5.0.5.RELEASE.jar jboss-loggin
+ g-3.3.2.Final.jar amqp-client-5.1.2.jar commons-codec-1.11.jar
+Main-Class: 
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://dubbo.apache.org/schema/dubbo
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--配置读取properties文件的位置-->
+    <context:property-placeholder location="classpath:config/jdbc.properties"></context:property-placeholder>
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driverClassName_order}"></property>
+        <property name="url" value="${url_order}"></property>
+        <property name="username" value="${username_order}"></property>
+        <property name="password" value="${password_order}"></property>
+    </bean>
+
+
+    <!--配置SqlSessionFactoryBean-->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--注入seata提供的数据源代理对象-->
+        <property name="dataSource" ref="dataSourceProxy"></property>
+        <property name="typeAliasesPackage" value="com.itheima.domain"></property>
+    </bean>
+
+    <!--配置mybatis的扫描器-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itheima.dao"></property>
+        <!--由于我们有3个微服务，每个微服务都会配置sqlSessionFactoryBean，那么如果指定注入的sqlSessionFactoryBean名称，则spring不知道注入哪个-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"></property>
+    </bean>
+
+    <!--配置dubbo的服务名称-->
+    <dubbo:application name="seata-order"></dubbo:application>
+
+    <!--配置注册中心的地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
+
+    <!--配置服务的协议和端口-->
+    <dubbo:protocol name="dubbo" port="20882" host="127.0.0.1"></dubbo:protocol>
+
+    <!--配置dubbo扫描服务的包-->
+    <dubbo:annotation package="com.itheima"></dubbo:annotation>
+
+
+    <!--seata的配置：配置全局事务管理的扫描器-->
+    <bean id="globalTransactionScanner" class="io.seata.spring.annotation.GlobalTransactionScanner">
+        <!--注入服务的名称-->
+        <constructor-arg value="seata-order"></constructor-arg>
+        <!--注入事务的服务组名称（该名称的声明是在TC事务协调器的配置中）-->
+        <constructor-arg value="my_test_tx_group"></constructor-arg>
+    </bean>
+
+    <!--配置seata的代理数据源-->
+    <bean id="dataSourceProxy" class="io.seata.rm.datasource.DataSourceProxy">
+        <!--注入原始数据源-->
+        <constructor-arg ref="dataSource"></constructor-arg>
+    </bean>
+
+    <!--在早期fescar版本时，无须此配置。而seata版本此配置不能省略，配的是undo_log操作的解析器-->
+    <bean id="undoLogParser" class="io.seata.rm.datasource.undo.parser.JacksonUndoLogParser"></bean>
+</beans>

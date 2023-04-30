@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <proxies>
+        <proxy>
+            <id>http-proxy</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>127.0.0.1</host>
+            <port>7890</port>
+            <!--  <username>proxyuser</username>
+      <password>somepassword</password>
+      <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+      -->
+        </proxy>
+        <proxy>
+            <id>https-proxy</id>
+            <active>true</active>
+            <protocol>https</protocol>
+            <host>127.0.0.1</host>
+            <port>7890</port>
+            <!--  <username>proxyuser</username>
+      <password>somepassword</password>
+      <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+      -->
+        </proxy>
+    </proxies>
     <mirrors>
-        <mirror>
+        <!-- <mirror>
             <id>mirror</id>
             <mirrorOf>central,jcenter,!rdc-releases,!rdc-snapshots</mirrorOf>
+            <mirrorOf>*</mirrorOf>
             <name>mirror</name>
             <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-        </mirror>
+        </mirror> -->
+
+
+        <!-- <mirror>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://central.maven.org/maven2</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror> -->
 
     </mirrors>
     <servers>

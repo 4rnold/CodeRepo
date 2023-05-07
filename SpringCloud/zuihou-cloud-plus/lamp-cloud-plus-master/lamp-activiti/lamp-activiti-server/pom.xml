@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.tangyh.lamp</groupId>
+        <artifactId>lamp-activiti</artifactId>
+        <version>3.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lamp-activiti-server</artifactId>
+    <name>${project.artifactId}</name>
+    <description>工作流服务</description>
+
+    <dependencies>
+        <!--业务相关-->
+        <dependency>
+            <groupId>com.tangyh.lamp</groupId>
+            <artifactId>lamp-activiti-controller</artifactId>
+            <version>${lamp-project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.tangyh.lamp</groupId>
+            <artifactId>lamp-oauth-api</artifactId>
+            <version>${lamp-project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-cloud-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-swagger2-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-validator-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-xss-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-security-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-websocket</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+
+        <!-- activiti -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter-basic</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-json-converter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.activiti</groupId>
+                    <artifactId>activiti-bpmn-model</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-css</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-svg-dom</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-svggen</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <filters>
+            <filter>../../src/main/filters/config-${profile.active}.properties</filter>
+        </filters>
+
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-resources-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <encoding>UTF-8</encoding>-->
+            <!--                    &lt;!&ndash; 过滤后缀为pem、pfx的证书文件 &ndash;&gt;-->
+            <!--                    <nonFilteredFileExtensions>-->
+            <!--                        <nonFilteredFileExtension>pem</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>pfx</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>p12</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>key</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>xls</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>-->
+            <!--                        <nonFilteredFileExtension>svg</nonFilteredFileExtension>-->
+            <!--                    </nonFilteredFileExtensions>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+        </plugins>
+    </build>
+
+</project>

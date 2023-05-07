@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.tangyh.lamp</groupId>
+        <artifactId>lamp-boot-plus</artifactId>
+        <version>3.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.tangyh.lamp</groupId>
+    <artifactId>lamp-activiti</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>lamp-activiti-entity</module>
+        <module>lamp-activiti-controller</module>
+        <module>lamp-activiti-biz</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.tangyh.lamp</groupId>
+                <artifactId>lamp-activiti-controller</artifactId>
+                <version>${lamp-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tangyh.lamp</groupId>
+                <artifactId>lamp-activiti-entity</artifactId>
+                <version>${lamp-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tangyh.lamp</groupId>
+                <artifactId>lamp-activiti-biz</artifactId>
+                <version>${lamp-project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

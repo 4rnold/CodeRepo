@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangyh.lamp.activiti.dao.biz.BizLeaveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tangyh.lamp.activiti.entity.biz.BizLeave">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="created_by" jdbcType="BIGINT" property="createdBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="updated_by" jdbcType="BIGINT" property="updatedBy"/>
+        <result column="name_" jdbcType="VARCHAR" property="name"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="when_long" jdbcType="VARCHAR" property="whenLong"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="reason" jdbcType="VARCHAR" property="reason"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="tenant_code" jdbcType="VARCHAR" property="tenantCode"/>
+        <result column="is_over" jdbcType="BIT" property="isOver"/>
+        <result column="inst_id" jdbcType="VARCHAR" property="inst"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,create_time,created_by,update_time,updated_by,
+        name_, start_time, end_time, when_long, type, reason, user_id, tenant_code, inst_id, is_over
+    </sql>
+
+</mapper>

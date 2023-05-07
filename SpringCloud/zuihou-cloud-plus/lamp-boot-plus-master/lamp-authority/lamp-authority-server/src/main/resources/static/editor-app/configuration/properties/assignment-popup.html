@@ -1,0 +1,62 @@
+<div class="modal" ng-controller="KisBpmAssignmentPopupCtrl">
+    <div class="modal-dialog modal-wide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" class="close" data-dismiss="modal" ng-click="close()" type="button">&times;
+                </button>
+                <h2 translate>PROPERTY.ASSIGNMENT.TITLE</h2>
+            </div>
+
+            <div class="modal-body">
+                <div class="row row-no-gutter">
+                    <div class="col-xs-4">
+                        <div class="row row-no-gutter">
+                            <div class="form-group">
+                                <label for="assigneeField">{{'PROPERTY.ASSIGNMENT.ASSIGNEE' | translate}}</label>
+                                <input class="form-control" id="assigneeField" ng-click="selectAssignee()"
+                                       ng-model="popup.assignment.assigneeField"
+                                       placeholder="{{'PROPERTY.ASSIGNMENT.ASSIGNEE_PLACEHOLDER' | translate}}"
+                                       type="text"/>
+                                <button class="btn btn-primary" ng-click="clearAssignee()" translate>清除</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="assigneeFieldReg">{{'PROPERTY.ASSIGNMENT.ASSIGNEE_REG' | translate}}</label>
+                                <input class="form-control" id="assigneeFieldReg"
+                                       ng-model="popup.assignment.assigneeFieldReg"
+                                       type="text"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="userField">{{'PROPERTY.ASSIGNMENT.CANDIDATE_USERS' | translate}}</label>
+                                <input class="form-control" id="userField" ng-click="selectCandidate()"
+                                       ng-model="popup.assignment.candidateUserField"
+                                       placeholder="{{'PROPERTY.ASSIGNMENT.CANDIDATE_USERS' | translate}}"
+                                       type="text"/>
+                                <button class="btn btn-primary" ng-click="clearCandidateUser()" translate>清除</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="groupField">{{'PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS' | translate}}</label>
+                                <input class="form-control" id="groupField" ng-click="selectGroup()"
+                                       ng-model="popup.assignment.candidateGroupField"
+                                       placeholder="{{'PROPERTY.ASSIGNMENT.CANDIDATE_GROUPS' | translate}}"
+                                       type="text"/>
+                                <button class="btn btn-primary" ng-click="clearGroup()" translate>清除</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label>{{selectTitle}}</label>
+                            <div class="default-grid" ng-grid="gridOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="close()" translate>ACTION.CANCEL</button>
+                <button class="btn btn-primary" ng-click="save()" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

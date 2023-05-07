@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.6.RELEASE</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tangyh.lamp</groupId>
+    <artifactId>lamp-generator-plus</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+
+    <url>https://gitee.com/zuihou111/lamp-generator</url>
+    <name>${project.artifactId}</name>
+    <description>为 lamp-cloud-plus 项目量身打造的代码生成器</description>
+
+    <repositories>
+        <repository>
+            <id>oss-public</id>
+            <url>https://oss.sonatype.org/content/repositories/public</url>
+        </repository>
+    </repositories>
+    <properties>
+        <lamp-util.version>3.0.0</lamp-util.version>
+        <mybatisplus.version>3.4.1</mybatisplus.version>
+        <lombok.version>1.18.16</lombok.version>
+        <commons.lang3.version>3.10</commons.lang3.version>
+        <hutool.version>5.5.1</hutool.version>
+        <mysql.version>8.0.22</mysql.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.tangyh.basic</groupId>
+            <artifactId>lamp-core</artifactId>
+            <version>${lamp-util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatisplus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+
+        <!--  在这个项目运行test类，生成代码，需要将这个注释打开 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

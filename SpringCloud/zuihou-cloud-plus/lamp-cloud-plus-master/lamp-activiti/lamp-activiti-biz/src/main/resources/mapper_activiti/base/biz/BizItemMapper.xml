@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangyh.lamp.activiti.dao.biz.BizItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tangyh.lamp.activiti.entity.biz.BizItem">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="created_by" jdbcType="BIGINT" property="createdBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="updated_by" jdbcType="BIGINT" property="updatedBy"/>
+        <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
+        <result column="item_content" jdbcType="VARCHAR" property="itemContent"/>
+        <result column="item_remake" jdbcType="VARCHAR" property="itemRemake"/>
+        <result column="tenant_code" jdbcType="VARCHAR" property="tenantCode"/>
+        <result column="task_id" jdbcType="VARCHAR" property="taskId"/>
+        <result column="inst_id" jdbcType="VARCHAR" property="instId"/>
+        <result column="module_" jdbcType="VARCHAR" property="module"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,create_time,created_by,update_time,updated_by,
+        item_name, item_content, item_remake, tenant_code, task_id, inst_id, module_
+    </sql>
+
+</mapper>

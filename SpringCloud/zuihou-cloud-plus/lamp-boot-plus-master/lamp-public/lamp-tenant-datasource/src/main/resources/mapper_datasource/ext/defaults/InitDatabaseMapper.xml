@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangyh.lamp.tenant.dao.InitDatabaseMapper">
+
+    <update id="createDatabase" parameterType="java.util.Map">
+        CREATE DATABASE IF NOT EXISTS ${database} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+    </update>
+
+
+    <delete id="dropDatabase" parameterType="java.util.Map">
+        DROP DATABASE IF EXISTS ${database}
+    </delete>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Tenant_Column_List">
+        id, create_time, created_by, update_time, updated_by,
+        code, name, type, status, readonly, duty, expiration_time, logo, describe_
+    </sql>
+
+    <select id="selectTenantCodeList" resultType="java.lang.String">
+        SELECT code FROM c_tenant where status = #{status, jdbcType=VARCHAR}
+        <if test="connectType != null and connectType != ''">
+            and connect_type = #{connectType, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+</mapper>

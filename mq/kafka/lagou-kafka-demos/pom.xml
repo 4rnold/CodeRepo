@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.lagou.kafka.demo</groupId>
+  <artifactId>kafka-demos</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <modules>
+    <module>demo-01-consumerOffsetMgr</module>
+    <module>demo-01-producer-consumer</module>
+    <module>demo-02-springboot-kafka</module>
+    <module>demo-03-kafkaadminclient</module>
+    <module>demo-04-kafka-properties</module>
+    <module>demo-05-kafka-customSerializer</module>
+    <module>demo-06-kafka-customPartitioner</module>
+    <module>demo-07-kafka-customInterceptor</module>
+    <module>demo-08-customDeserializer</module>
+    <module>demo-09-kafkaconsumerInterceptors</module>
+    <module>demo-10-groupoffsets</module>
+    <module>demo-11-test</module>
+    <module>demo-12-tx</module>
+    <module>demo-retryqueue</module>
+    <module>kafka-demo-jmx</module>
+  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

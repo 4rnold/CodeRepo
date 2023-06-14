@@ -220,7 +220,7 @@ public class AttachmentController extends SuperSimpleController<AttachmentServic
     })
     @GetMapping(value = "/download/url", produces = "application/octet-stream")
     @SysLog("根据文件连接下载文件")
-    @PreAuth("hasAnyPermission('{}download')")
+    @PreAuth("('{}download')")
     public void downloadUrl(@RequestParam(value = "url") String url, @RequestParam(value = "filename", required = false) String filename,
                             HttpServletRequest request, HttpServletResponse response) throws Exception {
         BizAssert.isTrue(StrUtil.isNotEmpty(url), BASE_VALID_PARAM.build("附件下载地址不能为空"));

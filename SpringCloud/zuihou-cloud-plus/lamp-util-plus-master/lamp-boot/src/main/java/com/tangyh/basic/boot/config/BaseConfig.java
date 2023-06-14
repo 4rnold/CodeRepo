@@ -74,7 +74,7 @@ public abstract class BaseConfig {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper
                 .setLocale(Locale.CHINA)
-                //去掉默认的时间戳格式
+                //去掉默认的时间戳格式【从java对象->json串】
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 // 时区
                 .setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
@@ -89,8 +89,8 @@ public abstract class BaseConfig {
 
                 //在使用spring boot + jpa/hibernate，如果实体字段上加有FetchType.LAZY，并使用jackson序列化为json串时，会遇到SerializationFeature.FAIL_ON_EMPTY_BEANS异常
                 .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
-                //忽略未知字段
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                //忽略未知字段，【真的要忽略吗？】
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
                 //单引号处理
                 .configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         objectMapper.registerModule(new LampJacksonModule()).findAndRegisterModules();

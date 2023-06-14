@@ -2,15 +2,17 @@ package com.lagou.rocket.demo.consumer;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageQueue;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+import org.apache.rocketmq.remoting.exception.RemotingException;
 
 import java.util.Set;
 
 public class MyConsumer {
 
-    public static void main(String[] args) throws MQClientException {
+    public static void main(String[] args) throws MQClientException, MQBrokerException, RemotingException, InterruptedException {
 
         // 消息的拉取
         DefaultMQPullConsumer pullConsumer = new DefaultMQPullConsumer();

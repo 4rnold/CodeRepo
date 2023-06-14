@@ -30,7 +30,6 @@ public class GrayRule extends AvailabilityFilteringRule {
 
     @Override
     public Server choose(Object key) {
-
         List<Server> serverList = this.getPredicate().getEligibleServers(this.getLoadBalancer().getAllServers(), key);
         if (CollUtil.isEmpty(serverList)) {
             return null;

@@ -42,8 +42,8 @@ public class ChatServer {
     @Autowired
     private ServerExceptionHandler serverExceptionHandler;
 
-    @Autowired
-    private ChatRedirectHandler chatRedirectHandler;
+//    @Autowired
+//    private ChatRedirectHandler chatRedirectHandler;
 
     public void run() {
         //连接监听线程组

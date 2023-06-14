@@ -40,11 +40,11 @@ public class WorkerRouter {
             new ConcurrentHashMap<>();
 
 
-   private BiConsumer<ImNode, PeerSender> runAfterAdd = (node, relaySender) -> {
+    private BiConsumer<ImNode, PeerSender> runAfterAdd = (node, relaySender) -> {
         doAfterAdd(node, relaySender);
     };
 
-    private  Consumer<ImNode> runAfterRemove = (node) -> {
+    private Consumer<ImNode> runAfterRemove = (node) -> {
         doAfterRemove(node);
     };
 
@@ -60,18 +60,17 @@ public class WorkerRouter {
 
     }
 
-    private boolean inited=false;
+    private boolean inited = false;
 
     /**
      * 初始化节点管理
      */
     public void init() {
 
-        if(inited)
-        {
+        if (inited) {
             return;
         }
-        inited=true;
+        inited = true;
 
         try {
             if (null == client) {
@@ -134,8 +133,6 @@ public class WorkerRouter {
         if (runAfterRemove != null) {
             runAfterRemove.accept(node);
         }
-
-
     }
 
     private void doAfterRemove(ImNode node) {
@@ -155,7 +152,7 @@ public class WorkerRouter {
      * @param data 新节点
      */
     private void processNodeAdded(ChildData data) {
-              byte[] payload = data.getData();
+        byte[] payload = data.getData();
         ImNode node = ObjectUtil.JsonBytes2Object(payload, ImNode.class);
 
         long id = ImWorker.getInst().getIdByPath(data.getPath());

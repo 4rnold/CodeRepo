@@ -1,0 +1,3 @@
+# 是否对调用api进行鉴权
+api:
+  check: true

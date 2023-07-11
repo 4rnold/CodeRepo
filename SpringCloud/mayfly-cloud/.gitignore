@@ -1,0 +1,50 @@
+# system ignore
+.DS_Store
+Thumbs.db
+
+# maven ignore
+target
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+
+# sts ignore
+.apt_generated
+.classpath
+.factorypath
+.settings
+.springBeans
+.project
+
+# idea ignore
+.idea
+*.iws
+*.iml
+*.ipr
+
+## netbeans ignore
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+.flattened-pom.xml
+
+# bin ignore
+bin
+
+# logs ignore
+logs
+
+# nodejs ignore
+node_modules

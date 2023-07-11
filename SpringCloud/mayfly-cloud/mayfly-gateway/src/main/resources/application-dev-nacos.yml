@@ -1,0 +1,7 @@
+# 不需要鉴权的服务以及对应的地址
+auth:
+  exclude:
+    services:
+      mayfly-auth:
+        - /captcha
+        - /login

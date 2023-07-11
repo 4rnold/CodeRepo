@@ -1,0 +1,40 @@
+[
+  {
+    "id": "mayfly-sys",
+    "order": 0,
+    "predicates": [{
+      "args": {
+        "pattern": "/api/sys/**"
+      },
+      "name": "Path"
+    }],
+    "filters": [
+      {
+        "name": "StripPrefix",
+        "args": {
+          "_genkey_0": "2"
+        }
+      }
+    ],
+    "uri": "lb://mayfly-sys"
+  },
+  {
+    "id": "mayfly-auth",
+    "order": 0,
+    "predicates": [{
+      "args": {
+        "pattern": "/api/auth/**"
+      },
+      "name": "Path"
+    }],
+    "filters": [
+      {
+        "name": "StripPrefix",
+        "args": {
+          "_genkey_0": "2"
+        }
+      }
+    ],
+    "uri": "lb://mayfly-auth"
+  }
+]

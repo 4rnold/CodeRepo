@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: mayfly-gateway
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+nacos:
+  gateway:
+    route:
+      config:
+        data-id: mayfly-gateway-router
+        group: DEFAULT_GROUP

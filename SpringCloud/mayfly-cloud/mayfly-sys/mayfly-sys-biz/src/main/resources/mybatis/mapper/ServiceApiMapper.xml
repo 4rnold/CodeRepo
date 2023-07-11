@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mayfly.sys.biz.mapper.ServiceApiMapper">
+    <select id="selectByQuery" resultType="mayfly.sys.biz.entity.ServiceApiDO">
+        SELECT tsa.*
+        FROM t_service_api tsa
+        WHERE 1 = 1
+        <if test="serviceId != null">
+            AND tsa.service_id = #{serviceId}
+        </if>
+        <if test="serviceCode != null">
+            AND tsa.service_code = #{serviceCode}
+        </if>
+        <if test="updateTime != null">
+            AND DATE_FORMAT(tsa.update_time,'%Y-%m-%d %H:%i:%s') <![CDATA[ >= #{updateTime} ]]>
+        </if>
+        ORDER BY tsa.update_time DESC
+    </select>
+</mapper>

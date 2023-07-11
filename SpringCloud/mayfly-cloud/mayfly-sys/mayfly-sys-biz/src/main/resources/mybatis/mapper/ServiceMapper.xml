@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mayfly.sys.biz.mapper.ServiceMapper">
+    <select id="selectByQuery" resultType="mayfly.sys.biz.entity.ServiceDO">
+        SELECT ts.*
+        FROM t_service ts
+        WHERE 1 = 1
+        <if test="code != null">
+            AND ts.code = #{code}
+        </if>
+        <if test="updateTime != null">
+            AND DATE_FORMAT(ts.update_time,'%Y-%m-%d %H:%i:%s') <![CDATA[ >= #{updateTime} ]]>
+        </if>
+        ORDER BY ts.update_time DESC
+    </select>
+</mapper>

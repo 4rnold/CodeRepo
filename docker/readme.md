@@ -29,3 +29,9 @@ docker run -d \
 
 docker run -d --name mongo -v /usr/local/docker/mongodb/data:/data/db -p 27017:27017 mongo:4.4
 
+
+
+# nacos-mysql
+
+[nacos-docker/example/standalone-mysql-8.yaml at master · nacos-group/nacos-docker](https://github.com/nacos-group/nacos-docker/blob/master/example/standalone-mysql-8.yaml)
+

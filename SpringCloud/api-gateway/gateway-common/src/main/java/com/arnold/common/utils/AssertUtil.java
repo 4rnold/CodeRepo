@@ -3,7 +3,6 @@ package com.arnold.common.utils;
 import org.apache.commons.lang3.StringUtils;
 
 public class AssertUtil {
-
     private AssertUtil(){}
 
     public static void notEmpty(String string, String message) {

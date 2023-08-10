@@ -1,12 +1,11 @@
 package com.arnold.core.helper;
 
-import com.arnold.common.config.DynamicConfigManager;
+import com.arnold.common.config.DynamicServiceManager;
 import com.arnold.common.config.ServiceDefinition;
 import com.arnold.common.config.invoker.HttpServiceInvoker;
 import com.arnold.common.config.invoker.ServiceInvoker;
 import com.arnold.common.constants.BasicConst;
 import com.arnold.common.constants.GatewayConst;
-import com.arnold.common.constants.GatewayProtocol;
 import com.arnold.common.enums.ResponseCode;
 import com.arnold.common.exception.ResponseException;
 import com.arnold.common.rule.Rule;
@@ -39,28 +38,28 @@ public class RequestHelper {
 		GatewayRequest gateWayRequest = buildGatewayRequest(request, ctx);
 
 		//	根据请求对象里的 uniqueId，获取资源服务信息(也就是服务定义信息)
-		//ServiceDefinition serviceDefinition =
-		//		DynamicConfigManager.getInstance().getServiceDefinition(gateWayRequest.getUniqueId());
+		ServiceDefinition serviceDefinition =
+				DynamicServiceManager.getInstance().getServiceDefinition(gateWayRequest.getTargetServiceUniqueId());
 
-		ServiceDefinition serviceDefinition = ServiceDefinition.builder()
-				.serviceId("demo")
-				.enable(true)
-				.version("v1")
-				.patternPath("**")
-				.envType("dev")
-				.protocol(GatewayProtocol.HTTP)
-				.build();
+//		ServiceDefinition serviceDefinition = ServiceDefinition.builder()
+//				.serviceId("demo")
+//				.enable(true)
+//				.version("v1")
+//				.patternPath("**")
+//				.envType("dev")
+//				.protocol(GatewayProtocol.HTTP)
+//				.build();
 
 
 
 		//	根据请求对象获取服务定义对应的方法调用，然后获取对应的规则
-		ServiceInvoker serviceInvoker = new HttpServiceInvoker();
-		serviceInvoker.setInvokerPath(gateWayRequest.getPath());
-		serviceInvoker.setTimeout(500);
+//		ServiceInvoker serviceInvoker = new HttpServiceInvoker();
+//		serviceInvoker.setInvokerPath(gateWayRequest.getPath());
+//		serviceInvoker.setTimeout(500);
 
 		// 根据请求对象，获取规则
-//		Rule rule = getRule(gateWayRequest, serviceDefinition.getServiceId());
-		Rule rule = new Rule();
+		Rule rule = getRule(gateWayRequest, serviceDefinition.getServiceId());
+//		Rule rule = new Rule();
 
 		//	构建我们而定 GateWayContext 对象
 		GatewayContext gatewayContext = new GatewayContext(
@@ -71,7 +70,7 @@ public class RequestHelper {
 				rule, 0);
 
 		// 后续服务发现做完，这里都要改成动态的——已经在负载均衡算法中实现
-		gatewayContext.getRequest().setModifyHost("127.0.0.1:8082");
+//		gatewayContext.getRequest().setModifyHost("127.0.0.1:8082");
 		return gatewayContext;
 	}
 
@@ -136,12 +135,15 @@ public class RequestHelper {
 	 */
 	private static Rule getRule(GatewayRequest gateWayRequest, String serviceId) {
 		String key = serviceId + DIT_SEPARATOR + gateWayRequest.getPath();
-		Rule rule = DynamicConfigManager.getInstance().getRuleByPath(key);
+		//全路径匹配
+		Rule rule = DynamicServiceManager.getInstance().getRuleByPath(key);
 
 		if (rule != null) {
 			return rule;
 		}
-		return DynamicConfigManager.getInstance().getRuleByServiceId(serviceId)
+
+		//前缀匹配
+		return DynamicServiceManager.getInstance().getRuleByServiceId(serviceId)
 				.stream().filter(r -> gateWayRequest.getPath().startsWith(r.getPrefix()))
 				.findAny()
 				.orElseThrow(() -> new ResponseException(ResponseCode.PATH_NO_MATCHED));

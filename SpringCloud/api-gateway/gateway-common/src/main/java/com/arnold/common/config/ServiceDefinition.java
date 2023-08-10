@@ -1,8 +1,10 @@
 package com.arnold.common.config;
 
+import com.arnold.common.config.invoker.AbstractServiceInvoker;
 import com.arnold.common.config.invoker.ServiceInvoker;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -27,10 +29,14 @@ public class ServiceDefinition implements Serializable {
 
     private String envType;
 
+    @Builder.Default
     private boolean enable = true;
 
-    private Map<String/*invokerPath*/, ServiceInvoker> invokerMap;
+    private Map<String/*invokerPath*/, AbstractServiceInvoker> invokerMap;
 
+    @Tolerate
     public ServiceDefinition() {
     }
+
+
 }

@@ -11,6 +11,8 @@ public class Container implements LifeCycle{
 
     private final Config config;
 
+    //这个client是gateway向Server发起请求的client，NettyServer的EventLoop
+    //内部使用AsyncHttpClient
     private NettyHttpClient nettyHttpClient;
 
     private NettyHttpServer nettyHttpServer;

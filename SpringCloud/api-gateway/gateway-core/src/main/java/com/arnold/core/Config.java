@@ -1,5 +1,6 @@
 package com.arnold.core;
 
+
 import lombok.Data;
 
 /*
@@ -13,7 +14,7 @@ public class Config {
     private String applicationName = "gateway";
 
     //注册中心地址
-    private String registryAddress = "127.0.0.1:2181";
+    private String registryAddress = "127.0.0.1:8848";
 
     //env
     private String env = "dev";

@@ -1,7 +1,7 @@
 package com.arnold.core.request;
 
-import io.netty.handler.codec.http.cookie.Cookie;
 import org.asynchttpclient.Request;
+import org.asynchttpclient.cookie.Cookie;
 
 public interface IGatewayRequest {
 

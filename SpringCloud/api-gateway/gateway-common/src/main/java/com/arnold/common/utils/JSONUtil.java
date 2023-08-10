@@ -114,6 +114,8 @@ public class JSONUtil {
         }
     }
 
+
+
     public static <T> List<T> parseToList(String json, Class<T> clz){
         return parse(json,getCollectionType(List.class,clz));
     }

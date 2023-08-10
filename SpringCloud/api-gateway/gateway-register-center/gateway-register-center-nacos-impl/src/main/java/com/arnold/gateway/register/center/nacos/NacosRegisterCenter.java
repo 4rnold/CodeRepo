@@ -1,4 +1,7 @@
 package com.arnold.gateway.register.center.nacos;
+import com.arnold.common.config.invoker.HttpServiceInvoker;
+import com.arnold.common.config.invoker.ServiceInvoker;
+import com.google.common.collect.Maps;
 
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingFactory;
@@ -21,10 +24,8 @@ import com.arnold.gateway.register.center.api.RegisterCenter;
 import com.arnold.gateway.register.center.api.RegisterCenterListener;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -35,15 +36,29 @@ public class NacosRegisterCenter implements RegisterCenter {
 
     private String registerAddress;
 
+    /**
+     * env就是nacos中的groupname
+     */
     private String env;
 
     //服务实例信息
+    /**
+     * nacos服务管理,逻辑全部委派给NamingService或NamingMaintainService来操作
+     */
     private NamingService namingService;
 
     //服务定义信息
+    /**
+     *     NamingMaintainService
+     * 这个类应该是与NacosNamingService有相反的作用,
+     *
+     * NacosNamingService是主动获取或者被动接受nacos的消息,但是不能操作,相当于crud的r
+     *
+     * 该类是可以操作nacos,拥有了crud的cud功能
+     */
     private NamingMaintainService namingMaintainService;
 
-    private List<RegisterCenterListener> registerCenterListenerList;
+    private List<RegisterCenterListener> registerCenterListenerList = new CopyOnWriteArrayList<>();
 
 
     @Override
@@ -82,6 +97,8 @@ public class NacosRegisterCenter implements RegisterCenter {
             throw new RuntimeException(e);
         }
     }
+
+
 
     @Override
     public void deregister(ServiceDefinition serviceDefinition, ServiceInstance serviceInstance) {
@@ -167,6 +184,8 @@ public class NacosRegisterCenter implements RegisterCenter {
                     ServiceDefinition serviceDefinition = JSONUtil.parse(service.getMetadata()
                             .get(GatewayConst.META_DATA_KEY), ServiceDefinition.class);
 
+
+
                     //获取服务实例信息
                     List<Instance> allInstances = namingService.getAllInstances(service.getName(), env);
                     Set<ServiceInstance> set = new HashSet<>();
@@ -177,6 +196,7 @@ public class NacosRegisterCenter implements RegisterCenter {
                         set.add(serviceInstance);
                     }
                     // 调用注册中心的监听器，将服务定义和服务实例进行缓存
+                    //调用自己的Listener
                     registerCenterListenerList.stream().forEach(l -> l.onChange(serviceDefinition, set));
                     log.info("【注册中心】监听到 Nacos 事件，完成更新！");
                 } catch (NacosException e) {

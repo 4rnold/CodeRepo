@@ -20,6 +20,8 @@ public class GatewayContext extends BaseContext {
 
     private int currentRetryTimes;
 
+    private boolean isGray;
+
     public GatewayContext(String protocol, ChannelHandlerContext ctx, boolean keepAlive,
                           GatewayRequest gateWayRequest, Rule rule, int currentRetryTimes) {
         super(protocol, ctx, keepAlive);
@@ -35,7 +37,7 @@ public class GatewayContext extends BaseContext {
 
     //getuniqueId
     public String getUniqueId(){
-        return request.getUniqueId();
+        return request.getTargetServiceUniqueId();
     }
 
     //releaseRequest
@@ -44,7 +46,6 @@ public class GatewayContext extends BaseContext {
             ReferenceCountUtil.release(request.getFullHttpRequest());
         }
     }
-
 
 
 

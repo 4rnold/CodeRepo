@@ -20,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 @Data
 public class GatewayRequest implements IGatewayRequest {
 
-    private final String uniqueId;
+    private final String targetServiceUniqueId;
+
 
     //开始时间
     private final long startTime;
@@ -93,12 +94,12 @@ public class GatewayRequest implements IGatewayRequest {
      */
     private long userId;
 
-    public GatewayRequest(String uniqueId,
+    public GatewayRequest(String targetServiceUniqueId,
                           Charset charset, String clientIp, String host,
                           String uri, HttpMethod httpMethod,
                           String contentType, HttpHeaders httpHeaders,
                           FullHttpRequest fullHttpRequest) {
-        this.uniqueId = uniqueId;
+        this.targetServiceUniqueId = targetServiceUniqueId;
         //now
         this.startTime = Calendar.getInstance().getTimeInMillis();
 //        this.endTime = endTime;
@@ -110,6 +111,10 @@ public class GatewayRequest implements IGatewayRequest {
         this.httpMethod = httpMethod;
         this.contentType = contentType;
         this.httpHeaders = httpHeaders;
+
+        //QueryStringDecoder 的作用就是把 HTTP uri 分割成 path 和 key-value 参数对，
+        // 也可以用来解码 Content-Type = "application/x-www-form-urlencoded" 的 HTTP POST。
+        // 特别注意的是，该 decoder 仅能使用一次。
         this.queryStringDecoder = new QueryStringDecoder(uri, charset);
         this.fullHttpRequest = fullHttpRequest;
 
@@ -214,7 +219,7 @@ public class GatewayRequest implements IGatewayRequest {
     }
 
     @Override
-    public void addOrReplaceCookie(Cookie cookie) {
+    public void addOrReplaceCookie(org.asynchttpclient.cookie.Cookie cookie) {
         requestBuilder.addOrReplaceCookie(cookie);
     }
 

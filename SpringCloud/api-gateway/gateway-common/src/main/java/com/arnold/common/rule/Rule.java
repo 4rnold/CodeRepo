@@ -21,6 +21,7 @@ public class Rule implements Comparable<Rule>, Serializable {
 
     private List<String> pathList;
 
+    //这个prefix是根据 要请求的serviceId + 前缀判断
     private String prefix;
 
 
@@ -73,22 +74,25 @@ public class Rule implements Comparable<Rule>, Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, protocol, order, filterConfigSet);
+        return Objects.hash(id);
     }
+
+
 
     @Data
     public static class FilterConfig  {
-        //id
+        //filterId，根据FilterId找到Filter
         private String id;
-        //config
-        private String config;
+
+        //config描述，每个filter自己的配置
+        private String configContent;
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             FilterConfig that = (FilterConfig) o;
-            return Objects.equals(id, that.id) && Objects.equals(config, that.config);
+            return Objects.equals(id, that.id) && Objects.equals(configContent, that.configContent);
         }
 
         @Override

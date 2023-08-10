@@ -6,6 +6,9 @@ import com.arnold.common.exception.ConnectException;
 import com.arnold.common.exception.ResponseException;
 import com.arnold.core.ConfigLoader;
 import com.arnold.core.context.GatewayContext;
+import com.arnold.core.filter.FilterChainFactory;
+import com.arnold.core.filter.FilterChainFactoryImpl;
+import com.arnold.core.filter.GatewayFilterChain;
 import com.arnold.core.helper.AsyncHttpHelper;
 import com.arnold.core.helper.RequestHelper;
 import com.arnold.core.helper.ResponseHelper;
@@ -27,6 +30,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class NettyCoreProcessor implements NettyProcessor {
 
+    private FilterChainFactory filterfactory = FilterChainFactoryImpl.getInstance();
     //传俩参数不就行了，不用wrapper包装
     @Override
     public void process(HttpRequestWrapper httpRequestWrapper) {
@@ -35,7 +39,14 @@ public class NettyCoreProcessor implements NettyProcessor {
 
         try {
             GatewayContext gatewayContext = RequestHelper.buildGatewayContext(request, ctx);
-            route(gatewayContext);
+
+            //执行过滤器逻辑
+            GatewayFilterChain gatewayFilterChain = filterfactory.buildFilterChain(gatewayContext);
+
+            gatewayFilterChain.doFilter(gatewayContext);
+
+
+            //route(gatewayContext);
         } catch (BaseException e) {
             log.error("process error {} {}", e.getCode().getCode(), e.getCode().getMessage());
             FullHttpResponse response = ResponseHelper.getHttpResponse(e.getCode());
@@ -52,42 +63,5 @@ public class NettyCoreProcessor implements NettyProcessor {
         ReferenceCountUtil.release(request);
     }
 
-    private void route(GatewayContext gatewayContext) {
-        //创建asynchttpclient的request
-        Request request = gatewayContext.getRequest().build();
-        CompletableFuture<Response> future = AsyncHttpHelper.getInstance().executeRequest(request);
-        boolean whenComplete = ConfigLoader.getConfig().isWhenComplete();
-        //同步异步
-        if (whenComplete) {
-            future.whenComplete(((response, throwable) -> {
-                complete(request, response, throwable, gatewayContext);
-            }));
-        } else {
-            future.whenCompleteAsync(((response, throwable) -> {
-                complete(request, response, throwable, gatewayContext);
-            }));
-        }
-    }
 
-    private void complete(Request request, Response response, Throwable throwable, GatewayContext gatewayContext) {
-        if (Objects.nonNull(throwable)) {
-            String url = request.getUrl();
-            if (throwable instanceof TimeoutException) {
-                log.warn("request timeout {}", url);
-                gatewayContext.setThrowable(
-                        new ResponseException(ResponseCode.REQUEST_TIMEOUT)
-                );
-            } else {
-                gatewayContext.setThrowable(
-                        new ConnectException(throwable, gatewayContext.getUniqueId(), url,
-                                ResponseCode.HTTP_RESPONSE_ERROR)
-                );
-            }
-        } else {
-            gatewayContext.setResponse(GatewayResponse.buildGatewayResponse(response));
-        }
-        gatewayContext.writtened();
-        ResponseHelper.writeResponse(gatewayContext);
-
-    }
 }

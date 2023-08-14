@@ -104,21 +104,5 @@ public class NacosConfigCenter implements ConfigCenter {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-
-        Rule rule = new Rule();
-        rule.setName("demo");
-        rule.setId("1");
-        rule.setServiceId("backend-http-server");
-        rule.setPrefix("/demo/");
-
-
-        ConfigInfo configInfo = new ConfigInfo();
-        configInfo.setRules(List.of(rule));
-        JSONObject entries = cn.hutool.json.JSONUtil.parseObj(configInfo, true);
-        System.out.println(JSONUtil.toJSONString(entries));
-
-    }
 }
 

@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Data
-public class GatewayContext extends BaseContext {
+public class GatewayContext extends BasicContext {
 
     public GatewayRequest request;
 

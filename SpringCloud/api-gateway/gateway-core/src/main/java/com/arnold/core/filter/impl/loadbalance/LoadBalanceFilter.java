@@ -34,6 +34,7 @@ public class LoadBalanceFilter implements Filter {
         //change request host
         GatewayRequest request = context.getRequest();
         String host = chosenServiceInstance.getIp() + ":" + chosenServiceInstance.getPort();
+        log.info("loadBalanceFilter chosen host:{}", host);
         request.setModifyHost(host);
     }
 

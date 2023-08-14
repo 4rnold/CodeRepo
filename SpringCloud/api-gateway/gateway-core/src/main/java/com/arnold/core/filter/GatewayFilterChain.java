@@ -32,6 +32,7 @@ public class GatewayFilterChain implements Filter {
                 }
             } catch (Exception e) {
                 log.error("doFilter error {}", e.getMessage());
+                throw e;
             }
         }
     }

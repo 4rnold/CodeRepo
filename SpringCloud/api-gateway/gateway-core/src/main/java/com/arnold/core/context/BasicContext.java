@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 @SuperBuilder
 @Data
-public class BaseContext implements IContext{
+public class BasicContext implements IContext{
 
     //转发协议
     private String protocol;
@@ -36,7 +36,7 @@ public class BaseContext implements IContext{
     protected  final AtomicBoolean requestReleased = new AtomicBoolean(false);
 
 
-    public BaseContext(String protocol, ChannelHandlerContext channelHandlerContext, boolean keepAlive) {
+    public BasicContext(String protocol, ChannelHandlerContext channelHandlerContext, boolean keepAlive) {
         this.protocol = protocol;
         this.channelHandlerContext = channelHandlerContext;
         this.keepAlive = keepAlive;

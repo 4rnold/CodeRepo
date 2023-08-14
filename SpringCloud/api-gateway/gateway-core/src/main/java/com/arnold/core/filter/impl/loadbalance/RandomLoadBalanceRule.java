@@ -1,5 +1,6 @@
 package com.arnold.core.filter.impl.loadbalance;
 
+import com.alibaba.nacos.api.naming.NamingService;
 import com.arnold.common.config.DynamicServiceManager;
 import com.arnold.common.config.ServiceInstance;
 import com.arnold.common.enums.ResponseCode;
@@ -33,10 +34,16 @@ public class RandomLoadBalanceRule implements IGatewayLoadBalanceRule{
         return choose(serviceUniqueId,context.isGray());
     }
 
+//    NamingService namingService;
+
     @Override
     public ServiceInstance choose(String serviceId, boolean gray) {
         Set<ServiceInstance> serviceInstances =
                 DynamicServiceManager.getInstance().getServiceInstanceByUniqueId(serviceId, gray);
+
+        //使用nacos的Service选择，根据Service权重weight随机选择。
+//        namingService.selectOneHealthyInstance(serviceId);
+
         if (CollectionUtils.isEmpty(serviceInstances)) {
             log.warn("no instance available for :{}", serviceId);
             throw new NotFoundException(ResponseCode.SERVICE_INSTANCE_NOT_FOUND);

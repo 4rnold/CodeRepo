@@ -43,7 +43,9 @@ public class NettyHttpClient implements LifeCycle {
                 .setCompressionEnforced(true)
                 .setMaxConnections(config.getHttpMaxConnections())
                 .setMaxConnectionsPerHost(config.getHttpConnectionsPerHost())
+                .setMaxRequestRetry(0)
                 .setPooledConnectionIdleTimeout(config.getHttpPooledConnectionIdleTimeout());
+
         // 初始化 asyncHttpClient
         this.asyncHttpClient = new DefaultAsyncHttpClient(builder.build());
     }

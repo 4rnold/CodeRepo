@@ -1,6 +1,7 @@
 package com.arnold.core.filter.impl.loadbalance;
 
 import cn.hutool.core.map.MapUtil;
+import com.alibaba.nacos.api.naming.NamingService;
 import com.arnold.common.config.DynamicServiceManager;
 import com.arnold.common.config.ServiceInstance;
 import com.arnold.common.enums.ResponseCode;
@@ -36,9 +37,13 @@ public class RoundRobinLoadBalanceRule implements IGatewayLoadBalanceRule {
         return choose(serviceUniqueId, context.isGray());
     }
 
+
     @Override
     public ServiceInstance choose(String serviceId, boolean gray) {
         Set<ServiceInstance> serviceInstances = DynamicServiceManager.getInstance().getServiceInstanceByUniqueId(serviceId, gray);
+
+
+
         if (CollectionUtils.isEmpty(serviceInstances)) {
             log.warn("no instance available for :{}", serviceId);
             throw new NotFoundException(ResponseCode.SERVICE_INSTANCE_NOT_FOUND);

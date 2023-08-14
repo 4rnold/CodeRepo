@@ -40,6 +40,9 @@ public class RequestHelper {
 		//	根据请求对象里的 uniqueId，获取资源服务信息(也就是服务定义信息)
 		ServiceDefinition serviceDefinition =
 				DynamicServiceManager.getInstance().getServiceDefinition(gateWayRequest.getTargetServiceUniqueId());
+		if(serviceDefinition == null) {
+			throw new ResponseException(ResponseCode.SERVICE_DEFINITION_NOT_FOUND);
+		}
 
 //		ServiceDefinition serviceDefinition = ServiceDefinition.builder()
 //				.serviceId("demo")

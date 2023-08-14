@@ -24,6 +24,8 @@ public class Rule implements Comparable<Rule>, Serializable {
     //这个prefix是根据 要请求的serviceId + 前缀判断
     private String prefix;
 
+    private RetryConfig retryConfig;
+
 
 
     public Rule() {
@@ -99,5 +101,10 @@ public class Rule implements Comparable<Rule>, Serializable {
         public int hashCode() {
             return Objects.hash(id);
         }
+    }
+
+    @Data
+    public static class RetryConfig {
+        private int retryTimes;
     }
 }

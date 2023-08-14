@@ -53,6 +53,7 @@ public class NettyCoreProcessor implements NettyProcessor {
             doWriteAndRelease(ctx,request,response);
         } catch (Exception e) {
             log.error("process error {}", e.getMessage());
+            e.printStackTrace();
             FullHttpResponse response = ResponseHelper.getHttpResponse(ResponseCode.INTERNAL_ERROR);
             doWriteAndRelease(ctx,request,response);
         }

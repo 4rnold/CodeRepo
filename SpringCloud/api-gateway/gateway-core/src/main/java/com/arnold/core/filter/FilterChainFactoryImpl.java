@@ -47,7 +47,8 @@ public class FilterChainFactoryImpl implements FilterChainFactory {
 
     @Override
     public GatewayFilterChain buildFilterChain(GatewayContext context) {
-        return chainCache.get(context.getRule().getId(), k -> doBuildFilterChain(context.getRule()));
+        return chainCache.get(context.getRule().getId(),
+                k -> doBuildFilterChain(context.getRule()));
     }
 
     private GatewayFilterChain doBuildFilterChain(Rule rule) {

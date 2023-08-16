@@ -90,7 +90,7 @@ public class RouterFilter implements Filter {
     }
 
     private void doRetry(GatewayContext gatewayContext, int currentRetryTimes) {
-        log.info("retry times: {}", currentRetryTimes);
+        log.info("第{}次重试", currentRetryTimes+1);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

@@ -1,3 +1,4 @@
 com.arnold.core.filter.impl.gray.GrayFilter
 com.arnold.core.filter.impl.loadbalance.LoadBalanceFilter
 com.arnold.core.filter.impl.router.RouterFilter
+com.arnold.core.filter.impl.flowCtl.FlowCtlFilter

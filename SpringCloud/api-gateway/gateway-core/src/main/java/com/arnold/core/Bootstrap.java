@@ -6,6 +6,7 @@ import com.arnold.common.config.ServiceInstance;
 import com.arnold.common.utils.JSONUtil;
 import com.arnold.common.utils.NetUtils;
 import com.arnold.common.utils.TimeUtil;
+import com.arnold.core.redis.JedisUtil;
 import com.arnold.gateway.config.center.api.ConfigCenter;
 import com.arnold.gateway.register.center.api.RegisterCenter;
 import com.arnold.gateway.register.center.api.RegisterCenterListener;
@@ -26,6 +27,7 @@ public class Bootstrap {
 
     public static void main(String[] args) {
         AnsiOutput.setEnabled(AnsiOutput.Enabled.ALWAYS);
+        JedisUtil.init("redis://192.168.138.6:6379/0");
 
         //加载网关核心静态配置
         Config config = ConfigLoader.getInstance().load(args);

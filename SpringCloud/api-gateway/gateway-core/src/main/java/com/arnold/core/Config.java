@@ -64,4 +64,8 @@ public class Config {
      * 客户端空闲连接超时时间, 默认60秒
      */
     private int httpPooledConnectionIdleTimeout = 60 * 1000;
+
+    public Config() {
+        System.out.println("config construct");
+    }
 }

@@ -2,6 +2,7 @@ package com.arnold.common.rule;
 
 import lombok.Data;
 
+import java.io.PipedReader;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -27,12 +28,13 @@ public class Rule implements Comparable<Rule>, Serializable {
     private RetryConfig retryConfig;
 
 
+    private Set<FlowCtlConfig> flowCtlConfigSet = new HashSet<>();
 
     public Rule() {
     }
 
     public Rule(String id, String name, String protocol, Integer order,
-                String serviceId,
+                String skerviceId,
                 Set<FilterConfig> filterConfigSet) {
         this.id = id;
         this.name = name;
@@ -81,6 +83,7 @@ public class Rule implements Comparable<Rule>, Serializable {
 
 
 
+
     @Data
     public static class FilterConfig  {
         //filterId，根据FilterId找到Filter
@@ -106,5 +109,22 @@ public class Rule implements Comparable<Rule>, Serializable {
     @Data
     public static class RetryConfig {
         private int retryTimes;
+    }
+
+    @Data
+    public static class FlowCtlConfig {
+
+        //对path，ip，服务限流
+        private String type;
+
+        private String path;
+
+        //单机or分布式
+        private String model;
+
+        //多长时间，通过多少
+        private int limitDuration;
+
+        private int limitCount;
     }
 }

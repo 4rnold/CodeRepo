@@ -28,6 +28,7 @@ public class FilterChainFactoryImpl implements FilterChainFactory {
     private Cache<String, GatewayFilterChain> chainCache = Caffeine.newBuilder()
             .recordStats().expireAfterWrite(10, TimeUnit.MINUTES).build();
 
+    //map是为了多个filter的单例
     private Map<String, Filter> filterMap = new ConcurrentHashMap<>();
 
     private FilterChainFactoryImpl() {
@@ -54,10 +55,13 @@ public class FilterChainFactoryImpl implements FilterChainFactory {
     private GatewayFilterChain doBuildFilterChain(Rule rule) {
         GatewayFilterChain gatewayFilterChain = new GatewayFilterChain();
         ArrayList<Filter> filters = new ArrayList<>();
-        filters.add(filterMap.get(FilterConst.GRAY_FILTER_ID));
-        filters.add(filterMap.get(FilterConst.MONITOR_FILTER_ID));
-        filters.add(filterMap.get(FilterConst.MONITOR_END_FILTER_ID));
-        filters.add(filterMap.get(FilterConst.ROUTER_FILTER_ID));
+//        filters.add(filterMap.get(FilterConst.GRAY_FILTER_ID));
+//        filters.add(filterMap.get(FilterConst.MONITOR_FILTER_ID));
+//        filters.add(filterMap.get(FilterConst.MONITOR_END_FILTER_ID));
+//        filters.add(filterMap.get(FilterConst.ROUTER_FILTER_ID));
+        for (Map.Entry<String, Filter> filterEntry : filterMap.entrySet()) {
+            filters.add(filterEntry.getValue());
+        }
 
         addRuleFilters(rule, filters);
         CollectionUtils.filter(filters, PredicateUtils.notNullPredicate());

@@ -6,8 +6,11 @@ import com.arnold.common.rule.Rule;
 import com.arnold.common.utils.JSONUtil;
 import com.arnold.core.filter.impl.loadbalance.LoadbalanceRuleConfig;
 import com.arnold.gateway.config.center.ConfigInfo;
+import org.apache.commons.collections4.SetUtils;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RuleBuilderTest {
 
@@ -36,6 +39,16 @@ public class RuleBuilderTest {
 
         rule.addFilterConfig(filterConfig);
 
+        //Set<Rule.FlowCtlConfig> flowCtlConfigSet = rule.getFlowCtlConfigSet();
+        Rule.FlowCtlConfig flowCtlConfig = new Rule.FlowCtlConfig();
+        flowCtlConfig.setType("path");
+        flowCtlConfig.setPath("/demo/http-demo/ping");
+        flowCtlConfig.setModel("Singleton");
+        flowCtlConfig.setLimitDuration(5000);
+        flowCtlConfig.setLimitCount(1);
+        HashSet<Rule.FlowCtlConfig> flowCtlConfigs = SetUtils.hashSet(flowCtlConfig);
+
+        rule.setFlowCtlConfigSet(flowCtlConfigs);
 
         ConfigInfo configInfo = new ConfigInfo();
         configInfo.setRules(List.of(rule));

@@ -51,3 +51,6 @@ target
 
 # git
 *.orig
+
+*.log
+**/*.log

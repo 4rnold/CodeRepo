@@ -35,3 +35,8 @@ docker run -d --name mongo -v /usr/local/docker/mongodb/data:/data/db -p 27017:2
 
 [nacos-docker/example/standalone-mysql-8.yaml at master · nacos-group/nacos-docker](https://github.com/nacos-group/nacos-docker/blob/master/example/standalone-mysql-8.yaml)
 
+
+
+# prometheus
+
+[docker-install-everything/prometheus at master · FX-Max/docker-install-everything](https://github.com/FX-Max/docker-install-everything/tree/master/prometheus)

@@ -34,7 +34,12 @@ public enum ResponseCode {
     BLACKLIST(HttpResponseStatus.FORBIDDEN,10004, "请求IP在黑名单"),
     WHITELIST(HttpResponseStatus.FORBIDDEN,10005, "请求IP不在白名单"),
 
-    FLOWCTL_FAIL(HttpResponseStatus.FORBIDDEN,10031,"流控")
+    FLOWCTL_FAIL(HttpResponseStatus.FORBIDDEN,10031,"流控"),
+    /**
+     *
+     */
+    SENTINEL_FAIL(HttpResponseStatus.FORBIDDEN,10032,"Sentinel流控"),
+    SENTINEL_Fallback(HttpResponseStatus.FORBIDDEN,10032,"Sentinel熔断")
 
     ;
 

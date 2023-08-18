@@ -58,12 +58,23 @@ public class GatewayResponse {
      */
     public static GatewayResponse buildGatewayResponse(Object data) {
         ObjectNode objectNode = JSONUtil.createObjectNode();
-        objectNode.put(JSONUtil.STATUS, ResponseCode.SUCCESS.getStatus().code());
-        objectNode.put(JSONUtil.CODE, ResponseCode.SUCCESS.getCode());
-        objectNode.putPOJO(JSONUtil.DATA, data);
+        HttpResponseStatus responseStatus = HttpResponseStatus.OK;
+
+        if (data instanceof ResponseCode) {
+            ResponseCode responseCode = (ResponseCode) data;
+            responseStatus = responseCode.getStatus();
+            objectNode.put(JSONUtil.STATUS, responseCode.getStatus().code());
+            objectNode.put(JSONUtil.CODE, responseCode.getCode());
+            objectNode.putPOJO(JSONUtil.DATA, responseCode.getMessage());
+        } else {
+            objectNode.put(JSONUtil.STATUS, ResponseCode.SUCCESS.getStatus().code());
+            objectNode.put(JSONUtil.CODE, ResponseCode.SUCCESS.getCode());
+            objectNode.putPOJO(JSONUtil.DATA, data);
+        }
+
 
         GatewayResponse gatewayResponse = new GatewayResponse();
-        gatewayResponse.setHttpResponseStatus(ResponseCode.SUCCESS.getStatus());
+        gatewayResponse.setHttpResponseStatus(responseStatus);
         gatewayResponse.putHeader(HttpHeaderNames.CONTENT_TYPE, HttpHeaderValues.APPLICATION_JSON + "; charset=UTF-8");
         gatewayResponse.setContent(JSONUtil.toJSONString(objectNode));
         return gatewayResponse;

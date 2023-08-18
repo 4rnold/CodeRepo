@@ -31,6 +31,7 @@ public class Config {
 
 
 
+    private int prometheusPort = 18000;
 
 
     // ----------------------------------------------	Http Async 参数选项：

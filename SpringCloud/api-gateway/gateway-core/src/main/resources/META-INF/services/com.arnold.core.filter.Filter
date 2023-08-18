@@ -2,3 +2,7 @@ com.arnold.core.filter.impl.gray.GrayFilter
 com.arnold.core.filter.impl.loadbalance.LoadBalanceFilter
 com.arnold.core.filter.impl.router.RouterFilter
 com.arnold.core.filter.impl.flowCtl.FlowCtlFilter
+com.arnold.core.filter.impl.sentinel.SentinelFilter
+com.arnold.core.filter.impl.user.UserAuthFilter
+com.arnold.core.filter.impl.monitor.MonitorFilter
+com.arnold.core.filter.impl.monitor.MonitorEndFilter

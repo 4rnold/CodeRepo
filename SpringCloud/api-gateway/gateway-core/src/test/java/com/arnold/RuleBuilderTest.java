@@ -37,7 +37,12 @@ public class RuleBuilderTest {
         filterConfig.setId("load_balancer_filter");
         filterConfig.setConfigContent(loadbalanceRuleConfigJsonStr);
 
+        Rule.FilterConfig userFilterConfig = new Rule.FilterConfig();
+        userFilterConfig.setId("user_auth_filter");
+
         rule.addFilterConfig(filterConfig);
+        rule.addFilterConfig(userFilterConfig);
+
 
         //Set<Rule.FlowCtlConfig> flowCtlConfigSet = rule.getFlowCtlConfigSet();
         Rule.FlowCtlConfig flowCtlConfig = new Rule.FlowCtlConfig();

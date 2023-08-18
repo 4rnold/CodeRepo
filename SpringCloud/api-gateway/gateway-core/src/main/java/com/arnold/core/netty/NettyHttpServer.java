@@ -7,11 +7,13 @@ import com.arnold.core.netty.processor.NettyProcessor;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioChannelOption;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
@@ -66,6 +68,8 @@ public class NettyHttpServer implements LifeCycle {
         this.serverBootstrap
                 .group(bossEventLoopGroup, workerEventLoopGroup)
                 .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
+                .childOption(ChannelOption.SO_KEEPALIVE,true)
+                .childOption(NioChannelOption.SO_KEEPALIVE,true)
                 .localAddress(new InetSocketAddress(config.getPort()))//和bind()没区别
                 .childHandler(new ChannelInitializer<Channel>() {
                     @Override

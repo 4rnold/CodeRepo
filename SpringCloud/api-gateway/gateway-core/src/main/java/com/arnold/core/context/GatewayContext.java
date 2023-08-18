@@ -3,6 +3,7 @@ package com.arnold.core.context;
 import com.arnold.common.rule.Rule;
 import com.arnold.core.request.GatewayRequest;
 import com.arnold.core.response.GatewayResponse;
+import io.micrometer.core.instrument.Timer;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.ReferenceCountUtil;
 import lombok.Data;
@@ -21,6 +22,8 @@ public class GatewayContext extends BasicContext {
     private int currentRetryTimes;
 
     private boolean isGray;
+
+    private Timer.Sample timerSample;
 
     public GatewayContext(String protocol, ChannelHandlerContext ctx, boolean keepAlive,
                           GatewayRequest gateWayRequest, Rule rule, int currentRetryTimes) {

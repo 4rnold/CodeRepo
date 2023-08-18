@@ -149,6 +149,9 @@ public class GatewayRequest implements IGatewayRequest {
         if (cookieMap == null) {
             cookieMap = new HashMap<>();
             String cookieStr = getHttpHeaders().get(HttpHeaderNames.COOKIE);
+            if (StringUtils.isEmpty(cookieStr)) {
+                return null;
+            }
             //??
             Set<Cookie> Cookies = ServerCookieDecoder.STRICT.decode(cookieStr);
             for (Cookie cookie : Cookies) {

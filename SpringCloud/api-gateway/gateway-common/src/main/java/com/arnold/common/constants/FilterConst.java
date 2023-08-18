@@ -41,7 +41,7 @@ public interface FilterConst {
 
     String GRAY_FILTER_NAME = "gray_filter";
 
-    int GRAY_FILTER_ORDER = 0;
+    int GRAY_FILTER_ORDER = 1;
 
     /**
      * ---------------- 指标监控过滤器 --------------------------

@@ -37,6 +37,8 @@ public class FilterChainFactoryImpl implements FilterChainFactory {
             FilterAspect annotation = filter.getClass().getAnnotation(FilterAspect.class);
             log.info("load filter {}", filter.getClass().getName());
             if (annotation != null) {
+                //这filterId也没啥用?filterMap缓存filter实例,
+                // 不同的rule拥有不同的FilterChain,其中的Filter可能根据配置文件而不同.
                 String annotationId = annotation.id();
                 if (StringUtils.isEmpty(annotationId)) {
                     annotationId = filter.getClass().getName();
@@ -55,13 +57,14 @@ public class FilterChainFactoryImpl implements FilterChainFactory {
     private GatewayFilterChain doBuildFilterChain(Rule rule) {
         GatewayFilterChain gatewayFilterChain = new GatewayFilterChain();
         ArrayList<Filter> filters = new ArrayList<>();
-//        filters.add(filterMap.get(FilterConst.GRAY_FILTER_ID));
-//        filters.add(filterMap.get(FilterConst.MONITOR_FILTER_ID));
-//        filters.add(filterMap.get(FilterConst.MONITOR_END_FILTER_ID));
-//        filters.add(filterMap.get(FilterConst.ROUTER_FILTER_ID));
-        for (Map.Entry<String, Filter> filterEntry : filterMap.entrySet()) {
-            filters.add(filterEntry.getValue());
-        }
+        //每个filterChain固定的几个filter,其他需要配置
+        filters.add(filterMap.get(FilterConst.GRAY_FILTER_ID));
+        filters.add(filterMap.get(FilterConst.MONITOR_FILTER_ID));
+        filters.add(filterMap.get(FilterConst.MONITOR_END_FILTER_ID));
+        filters.add(filterMap.get(FilterConst.ROUTER_FILTER_ID));
+//        for (Map.Entry<String, Filter> filterEntry : filterMap.entrySet()) {
+//            filters.add(filterEntry.getValue());
+//        }
 
         addRuleFilters(rule, filters);
         CollectionUtils.filter(filters, PredicateUtils.notNullPredicate());

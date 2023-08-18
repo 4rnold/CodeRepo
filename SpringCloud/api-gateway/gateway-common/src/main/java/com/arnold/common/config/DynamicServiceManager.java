@@ -81,7 +81,7 @@ public class DynamicServiceManager {
 			// 如果为空，直接返回
 			return Collections.emptySet();
 		}
-		// 只返回gray的服务
+		// 只返回gray的服务,过滤
 		if (gray) {
 			return serviceInstances.stream()
 					.filter(ServiceInstance::isGray)

@@ -19,7 +19,8 @@ public class ConnectException extends BaseException {
 		this.requestUrl = requestUrl;
 	}
 
-	public ConnectException(Throwable cause, String uniqueId, String requestUrl, ResponseCode code) {
+	public ConnectException(Throwable cause, String uniqueId,
+							String requestUrl, ResponseCode code) {
 		super(code.getMessage(), cause, code);
 		this.uniqueId = uniqueId;
 		this.requestUrl = requestUrl;

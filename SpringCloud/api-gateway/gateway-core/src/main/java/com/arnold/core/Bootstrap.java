@@ -1,5 +1,10 @@
 package com.arnold.core;
 
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker.CircuitBreaker;
+import com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker.CircuitBreakerStrategy;
+import com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker.EventObserverRegistry;
 import com.arnold.common.config.DynamicServiceManager;
 import com.arnold.common.config.ServiceDefinition;
 import com.arnold.common.config.ServiceInstance;
@@ -13,9 +18,7 @@ import com.arnold.gateway.register.center.api.RegisterCenterListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ansi.AnsiOutput;
 
-import java.util.Map;
-import java.util.ServiceLoader;
-import java.util.Set;
+import java.util.*;
 
 import static com.arnold.common.constants.BasicConst.COLON_SEPARATOR;
 
@@ -28,6 +31,18 @@ public class Bootstrap {
     public static void main(String[] args) {
         AnsiOutput.setEnabled(AnsiOutput.Enabled.ALWAYS);
         JedisUtil.init("redis://192.168.138.6:6379/0");
+        initDegradeRule();
+        EventObserverRegistry.getInstance().addStateChangeObserver("http://172.25.144.1:8083/demo/http-demo/ping",
+                (prevState, newState, rule, snapshotValue) -> {
+                    if (newState == CircuitBreaker.State.OPEN) {
+                        // 变换至 OPEN state 时会携带触发时的值
+                        System.err.println(String.format("%s -> OPEN at %d, snapshotValue=%.2f", prevState.name(),
+                                TimeUtil.currentTimeMillis(), snapshotValue));
+                    } else {
+                        System.err.println(String.format("%s -> %s at %d", prevState.name(), newState.name(),
+                                TimeUtil.currentTimeMillis()));
+                    }
+                });
 
         //加载网关核心静态配置
         Config config = ConfigLoader.getInstance().load(args);
@@ -53,6 +68,9 @@ public class Bootstrap {
 
         RegisterCenter registerCenter = registerAndSubscribe(config, serviceDefinition, serviceInstance);
 
+
+
+
         //服务优雅关闭
         Runtime.getRuntime().addShutdownHook(new Thread() {
 
@@ -65,6 +83,7 @@ public class Bootstrap {
 
     }
 
+
     private static void configCenterInitAndSubscribe(Config config) {
         ServiceLoader<ConfigCenter> serviceLoader = ServiceLoader.load(ConfigCenter.class);
         ConfigCenter configCenter = serviceLoader.findFirst().orElseThrow(() -> {
@@ -76,6 +95,24 @@ public class Bootstrap {
         configCenter.subscribeRulesChange(rules -> DynamicServiceManager.getInstance().putAllRule(rules));
         log.info("缓存rules成功");
 
+    }
+
+    private static void initDegradeRule() {
+        List<DegradeRule> rules = new ArrayList<>();
+        DegradeRule rule = new DegradeRule("http://172.25.144.1:8083/demo/http-demo/ping")
+                .setGrade(CircuitBreakerStrategy.SLOW_REQUEST_RATIO.getType())
+                // Max allowed response time
+                .setCount(43)
+                // Retry timeout (in second)
+                .setTimeWindow(10)
+                // Circuit breaker opens when slow request ratio > 60%
+                .setSlowRatioThreshold(0.6)
+                .setMinRequestAmount(100)
+                .setStatIntervalMs(20000);
+        rules.add(rule);
+
+        DegradeRuleManager.loadRules(rules);
+        System.out.println("Degrade rule loaded: " + rules);
     }
 
     private static RegisterCenter registerAndSubscribe(Config config, ServiceDefinition serviceDefinition, ServiceInstance serviceInstance) {

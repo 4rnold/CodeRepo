@@ -17,7 +17,7 @@ public class Container implements LifeCycle{
 
     private NettyHttpServer nettyHttpServer;
 
-    private NettyProcessor nettyProcessor;
+//    private NettyProcessor nettyProcessor;
 
     public Container(Config config) {
         this.config = config;
@@ -26,9 +26,8 @@ public class Container implements LifeCycle{
 
     @Override
     public void init() {
-        NettyCoreProcessor nettyCoreProcessor = new NettyCoreProcessor();
-        this.nettyProcessor = nettyCoreProcessor;
-        this.nettyHttpServer = new NettyHttpServer(config, nettyProcessor);
+
+        this.nettyHttpServer = new NettyHttpServer(config);
         //这个client是gateway向Server发起请求的client，NettyServer的EventLoop
         this.nettyHttpClient = new NettyHttpClient(config, nettyHttpServer.getWorkerEventLoopGroup());
     }

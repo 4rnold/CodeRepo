@@ -1,6 +1,8 @@
 package com.arnold.core;
 
 
+import com.lmax.disruptor.BlockingWaitStrategy;
+import com.lmax.disruptor.WaitStrategy;
 import lombok.Data;
 
 /*
@@ -66,6 +68,11 @@ public class Config {
      */
     private int httpPooledConnectionIdleTimeout = 60 * 1000;
 
+    private String bufferType = "parallel";
+
+    private int disruptor_bufferSize = 1024 * 16;
+
+    private WaitStrategy disruptor_waitStrategy = new BlockingWaitStrategy();
     public Config() {
         System.out.println("config construct");
     }

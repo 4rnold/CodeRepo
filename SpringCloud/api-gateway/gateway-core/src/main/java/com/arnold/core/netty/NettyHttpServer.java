@@ -1,8 +1,11 @@
 package com.arnold.core.netty;
 
+import com.arnold.common.constants.GatewayConst;
 import com.arnold.common.utils.RemotingUtil;
 import com.arnold.core.Config;
 import com.arnold.core.LifeCycle;
+import com.arnold.core.netty.processor.DisruptorNettyCoreProcessor;
+import com.arnold.core.netty.processor.NettyCoreProcessor;
 import com.arnold.core.netty.processor.NettyProcessor;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -34,9 +37,16 @@ public class NettyHttpServer implements LifeCycle {
 
     private NettyProcessor nettyProcessor;
 
-    public NettyHttpServer(Config config, NettyProcessor nettyProcessor) {
+    public NettyHttpServer(Config config) {
         this.config = config;
-        this.nettyProcessor = nettyProcessor;
+
+        //按条件创建Processor
+        NettyProcessor nettyCoreProcessor = new NettyCoreProcessor();
+        if (GatewayConst.BUFFER_TYPE_PARALLEL.equals(config.getBufferType())) {
+            nettyCoreProcessor = new DisruptorNettyCoreProcessor(config, nettyCoreProcessor);
+        }
+
+        this.nettyProcessor = nettyCoreProcessor;
         init();
     }
 
@@ -68,8 +78,8 @@ public class NettyHttpServer implements LifeCycle {
         this.serverBootstrap
                 .group(bossEventLoopGroup, workerEventLoopGroup)
                 .channel(useEpoll() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
-                .childOption(ChannelOption.SO_KEEPALIVE,true)
-                .childOption(NioChannelOption.SO_KEEPALIVE,true)
+                .childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childOption(NioChannelOption.SO_KEEPALIVE, true)
                 .localAddress(new InetSocketAddress(config.getPort()))//和bind()没区别
                 .childHandler(new ChannelInitializer<Channel>() {
                     @Override
@@ -92,6 +102,8 @@ public class NettyHttpServer implements LifeCycle {
             throw new RuntimeException(e);
         }
 
+        // processor start
+        nettyProcessor.start();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class JedisUtil {
      *  方式03: Redis分片(通过client端集群,一致性哈希方式实现) + Jedis多节点连接池 》》Redis集群,负载和容灾较好, ShardedJedisPool一致性哈希分片,读写均匀，动态扩充
      *      new ShardedJedisPool(new JedisPoolConfig(), new LinkedList<JedisShardInfo>());
      *  方式03: Redis集群；
-     *      new JedisCluster(jedisClusterNodes);    // TODO
+     *      new JedisCluster(jedisClusterNodes);    //
      */
 
     private static ShardedJedisPool shardedJedisPool;

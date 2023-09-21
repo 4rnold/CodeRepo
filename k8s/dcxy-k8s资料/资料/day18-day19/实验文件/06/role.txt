@@ -1,0 +1,14 @@
+   apiGroups	<[]string>: 默认留空: 不写代表所有
+      # deploy:   extendtions/app
+
+   nonResourceURLs	<[]string>： 能访问的url /api/*
+
+   resourceNames	<[]string>: 能操作的白名单（具体Pod、Deploy的名字）
+
+   resources	<[]string>： 指定能操作的资源Pod、Deploy
+
+   verbs	<[]string> -required- ： 操作动作？
+
+   参照kubectl api-resources -owide 的verbs字段。自己挑一些
+   [create delete deletecollection get list patch update watch]
+

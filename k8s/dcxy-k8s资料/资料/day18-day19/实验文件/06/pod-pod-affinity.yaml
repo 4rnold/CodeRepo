@@ -1,0 +1,107 @@
+## 
+apiVersion: apps/v1
+kind: Deployment #DaemonSet+nodeSelector
+metadata:
+  name: redis-cache
+spec:
+  selector:
+    matchLabels:
+      app: store
+  replicas: 2
+  template:  ## Pod模板
+    metadata:
+      labels:
+        app: store
+    spec:
+      containers:
+      - name: redis-server
+        image: redis:3.2-alpine
+      affinity:
+        podAntiAffinity: ## 符合以下指定条件的不会被调度过去
+          requiredDuringSchedulingIgnoredDuringExecution:  ## 硬标准
+            - labelSelector:
+                matchExpressions:  ## 如果按照以下标签找到了Pod就不来了
+                  - key: app
+                    operator: In
+                    values:
+                    - store
+              topologyKey: "kubernetes.io/hostname"  
+          ## 拓扑键(划分逻辑区域)。node节点以name为拓扑网络（name相同认为是同一个东西）
+          ## 亲和就是都放在这个逻辑区域，反亲和就是必须避免放在同一个逻辑区域
+
+      
+## redis很可能部署同一个机器， 100. 5； 每一个机器只希望一个redis
+---
+## 区域反亲策略
+## 
+apiVersion: apps/v1
+kind: Deployment #DaemonSet+nodeSelector
+metadata:
+  name: redis-cache
+spec:
+  selector:
+    matchLabels:
+      app: store
+  replicas: 2
+  template:  ## Pod模板
+    metadata:
+      labels:
+        app: store
+    spec:
+      containers:
+      - name: redis-server
+        image: redis:3.2-alpine
+      affinity:
+        podAntiAffinity: ## 符合以下指定条件的不会被调度过去
+          requiredDuringSchedulingIgnoredDuringExecution:  ## 硬标准
+            - labelSelector:
+                matchExpressions:  ## 如果按照以下标签找到了Pod就不来了
+                  - key: app
+                    operator: In
+                    values:
+                    - store
+              topologyKey: "zone"  
+
+---
+
+
+## 部署web
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+spec:
+  selector:
+    matchLabels:
+      app: web-store
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: web-store
+    spec:
+      affinity:
+        ## 所有策略必须全部判断满足
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - web-store
+            ## 不能再同一个拓扑网络，
+            topologyKey: "kubernetes.io/hostname" #不能再同一个拓扑网络
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - store
+            ## 必须在同一逻辑分区（拓扑网络）
+            topologyKey: "kubernetes.io/hostname" # 需要在同一个拓扑网络
+      containers:
+      - name: web-app
+        image: nginx:1.12-alpine

@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default  ## 所属的名称空间
+  name: pod-reader 
+rules: ## 当前角色的规则
+- apiGroups: [""] # "" 标明 core API 组
+  resources: ["pods"] # 能操作所有的pod
+  # resourceNames: ["pod-taint","pod-time"] ## 指定只能操作某个名字的资源
+  verbs: ["get", "watch", "list"] # 动词。
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-reader
+rules:
+  # 在 HTTP 层面，用来访问 Secret 对象的资源的名称为 "secrets"
+- resources: ["secrets"]
+  apiGroups: [""]
+  verbs: ["get", "watch", "list"]
+- resources: ["configmaps"]
+  apiGroups: [""]
+  verbs: ["get", "watch", "list"]
+
+
+
+
+# [create delete deletecollection get list patch update watch]
+

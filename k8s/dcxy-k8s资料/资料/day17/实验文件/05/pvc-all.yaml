@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pvc-999
+  namespace: default
+  labels:
+    app: nginx-pvc-999
+spec:
+  # storageClassName: my-nfs-storage  ## 存储类的名字
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10m

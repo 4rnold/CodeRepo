@@ -1,0 +1,57 @@
+   allocateLoadBalancerNodePorts： type LoadBalancer:80： -- 负载到Service指定的端口88，这个端口每个机器是否都要开
+     不用看
+
+   clusterIP	<string>: 手动指定一个
+   clusterIPs	<[]string> type: ClusterIP  .type ExternalName不生效
+   
+   
+   
+   externalIPs	<[]string>:  指定一个可以接收流量的白名单
+
+
+   externalName	<string>: 指定代理外部的域名
+        type: ExternalName  ## 外部的名字
+        externalName: baidu.com   
+
+   externalTrafficPolicy: 外部流量策略  Local: 不隐藏客户端源IP，
+      Cluster：隐藏源IP
+     影响负载均衡效果。    Cluster 有负载均衡效果， Local负载均衡效果不佳
+      type: NodePort 情况下 。 externalTrafficPolicy: Cluster 默认值
+
+  
+   ## 特性太简陋，基本的都没实现
+   internalTrafficPolicy	<string>: 内部流量策略 Cluster（负载均衡）、Local（优先本节点机制）
+
+
+   ipFamilies	<[]string>: 默认IPV4
+
+   ipFamilyPolicy	<string>:  SingleStack、IPv6DualStack、PreferDualStack、RequireDualStack
+
+  =======type: loadBalancer设置项===========
+   loadBalancerClass	<string>: 云厂商实现
+
+   loadBalancerIP	<string>:  指定IP
+
+   loadBalancerSourceRanges	<[]string>: type=LoadBalancer才生效
+       指定能访问这个负载均衡器的其他客户端地址
+   healthCheckNodePort	<integer>: 健康检查  type: LoadBalancer
+   =========================================
+
+   ports: 
+    (type:  ClusterIP, NodePort, and LoadBalancer【对外的负载均衡器，可以绑定公网】)
+
+
+   publishNotReadyAddresses	<boolean>: 是否发布未就绪的
+
+   selector: （type是  ClusterIP, NodePort, and LoadBalancer）
+      我们指定selector，访问这个service'就会负载均衡的访问selector指定的一组Pod
+
+
+
+   ### session亲和  :  会话保持
+   sessionAffinity	<string>: ClientIP/None
+   sessionAffinityConfig	<Object>: 
+
+   topologyKeys	<[]string>: 指定拓扑
+
+   type: ExternalName, ClusterIP, NodePort, and LoadBalancer.

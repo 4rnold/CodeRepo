@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-cluster
+  namespace: default
+spec:
+  serviceName: mysql  # 一定指定StatefulSet的serviceName
+  selector:
+    matchLabels:
+      app: mysql 
+  replicas: 2 # by default is 1 。默认也是负载均衡
+  ### 自己连进这两个mysql。才能主从同步
+  template:
+    metadata:
+      labels:
+        app: mysql # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mysql
+        image: mysql:8.0.25
+        securityContext:  ## 指定安全上下文
+          runAsUser: 1000
+          runAsGroup: 1000
+        ports:
+        - containerPort: 3306
+          name: mysql-port
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
+        - name: MYSQL_DATABASE
+          value: "db_test"
+        volumeMounts:
+        - name: mysql-cnf
+          mountPath: /etc/mysql/conf.d
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-cnf
+    spec:
+      storageClassName: "managed-nfs-storage"
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+  - metadata:
+      name: mysql-data
+    spec:
+      storageClassName: "managed-nfs-storage"
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  selector:
+    app: mysql
+  type: NodePort 
+  # type: ClusterIP
+  # clusterIP: None  ## 没有集群ip，只能通过内部的dns访问 mysql-cluster-0.mysql.default
+  ports:
+  - name: mysql-port
+    port: 3306 ## service端口
+    targetPort:  3306 ## pod端口
+    protocol: TCP
+
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: hahah
+#   namespace: default
+#   labels:
+#     app: hahah
+# spec:
+#   storageClassName: "managed-nfs-storage"
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi

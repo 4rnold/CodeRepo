@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: lfy
+  namespace: default
+# ---
+# ## 写Role
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: all-global
+subjects:  ## 主体
+- kind: ServiceAccount
+  name: lfy # 'name' 是不区分大小写的
+  namespace: default
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # namespace: default  ## 所属的名称空间
+  name: ns-reader 
+rules: ## 当前角色的规则
+- apiGroups: [""] # "" 标明 core API 组
+  resources: ["namespaces"] ## 获取集群的所有名称空间
+  verbs: ["get", "watch", "list"] # 动词。
+---
+## 编写角色和账号的绑定关系
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-ns-global
+subjects:  ## 主体
+- kind: ServiceAccount
+  name: lfy # 'name' 是不区分大小写的
+  namespace: default
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: ns-reader 
+  apiGroup: rbac.authorization.k8s.io
